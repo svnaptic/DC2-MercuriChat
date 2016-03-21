@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+    File:   http://www.cs.uml.edu/~eseto/Data_Communications_II/sign-in.html
+    91.414 Data Communications II Project (MercuriChat)
+    Emily Seto, Undergraduate Computer Science student at UMass Lowell, emily_seto@student.uml.edu
+    Copyright (c) 2016 by Emily W. Seto. All rights reserved. May be freely copied or excerpted for
+        educational purposes with credit to the author.
+    The objective of this first assignment is to create an index for upcoming assignments in GUI.
+    Updated by EWS on March 13, 2016 at 3:26 AM
+-->
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>MercuriChat</title>
+
+		<!-- Latest compiled and minified CSS from Bootstrap: -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<!-- CSS customizations included and written by Emily Seto. -->
+		<link href="css/index.css" rel="stylesheet">
+	</head>
+	<body>
+		<!-- Navigation bar information from: http://getbootstrap.com/components/#navbar. -->
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped together for better mobile display. -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation.</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">MercuriChat</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling. -->
+				<div class="collapse navbar-collapse" id="navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="register.html">Get Started</a></li>
+						<li class="active"><a href="#">Sign In</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="#">The Team</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav><!-- End of navigation bar. -->
+
+		<!-- Referenced from: getbootstrap.com/examples/signin/ -->
+		<div class="container">
+			<form class="form-signin">
+				<h3>Sign In</h3>
+				<label for="inputUN" class="sr-only">Username</label>
+				<input type="email" id="inputUN" class="form-control" placeholder="Username" required autofocus>
+				<label for "inputPW" class="sr-only">Password</label>
+				<input type="password" id="inputPW" class="form-control" placeholder="Password" required>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="remember-me">Remember me
+					</label>
+				</div>
+				<button class="btn btn-default" type="submit">Sign in</button>
+			</form>
+		</div>
+	</body>
+</html>
