@@ -1,5 +1,22 @@
 Rails.application.routes.draw do
   resources :users
+  root 'users#index'
+  get '/index'   => 'users#index', to: redirect('/')
+  get 'register' => 'users#register', as: :register
+  get 'sign-in'  => 'users#sign-in', as: :'sign-in'
+  get 'about'    => 'users#about', as: :about
+  get 'team'     => 'users#team', as: :team
+ 
+
+  # Referenced from: http://rvg.me/2013/11/adding-a-bootstrap-3-layout-to-a-rails-4-project/
+  # get '/about'    => 'high_voltage/users#show', id: 'about'
+  # get '/team'     => 'high_voltage/users#show', id: 'team'
+  # get '/register' => 'high_voltage/users#show', id: 'register'
+  # get '/sign-in'  => 'high_voltage/users#show', id: 'sign-in'
+
+  # get '/index', to: redirect('/')
+  # root :to => 'high_voltage/users#show', id: 'index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
