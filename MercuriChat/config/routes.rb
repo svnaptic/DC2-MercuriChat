@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users
   root 'users#index'
-  get '/index'   => 'users#index', to: redirect('/')
+  get 'index'   => 'users#index', to: redirect('/')
   get 'register' => 'users#register', as: :register
   get 'sign-in'  => 'users#sign-in', as: :'sign-in'
   get 'about'    => 'users#about', as: :about

@@ -22,5 +22,10 @@ module MercuriChat
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Referenced from: http://stackoverflow.com/questions/18700219/rails-4-assets-not-loading-in-production
+    # Enable asset pipeline:
+    # config.assets.compile = true
+    # config.assets.precompile = ['*.js', '*.css', '*.css.erb']
   end
 end
