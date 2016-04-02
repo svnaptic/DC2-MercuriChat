@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'users#index'
   get 'index'   => 'users#index', to: redirect('/')
   get 'register' => 'users#register', as: :register
-  get 'sign-in'  => 'users#sign-in', as: :'sign-in'
+  get 'sign_in'  => 'users#sign_in', as: :'sign_in'
   get 'about'    => 'users#about', as: :about
   get 'team'     => 'users#team', as: :team
  

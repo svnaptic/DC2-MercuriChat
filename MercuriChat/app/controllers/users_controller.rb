@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def index1
+    @users = User.all
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
@@ -25,6 +29,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.password = params[:password]
 
     respond_to do |format|
       if @user.save
@@ -61,14 +66,43 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def register
+    @user = User.new
+  end #register
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:username, :password_hash, :password_salt)
+  def sign_in
+    @user = User.where(email: params[:inputUN]).take
+    if @user && @user.password && @user.password == params[:inputPW]
+      #Set their session variable to their id
+      #session[user] = @user.id
+      redirect_to @user
+    else
+      puts @user
+      puts params[:inputPW]
+      puts @user.password == params[:inputPW] if @user.password && params[:inputPW]
+      session[:error] = "Incorrect username or password. Please try again."
     end
+  end
+
+  ##From bcrypt gem
+  def login_attempt(email, password)
+    @user = User.find_by_email(email)
+    if @user.password == password
+      #Set their session variable or something
+    else
+      redirect_to sign_in_path
+    end
+  end
+
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password_hash, :password_salt)
+  end
 end

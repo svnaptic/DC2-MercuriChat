@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-    File:   http://www.cs.uml.edu/~eseto/Data_Communications_II/dashboard.html
+    File:   http://www.cs.uml.edu/~eseto/Data_Communications_II/sign-in.html
     91.414 Data Communications II Project (MercuriChat)
     Emily Seto, Undergraduate Computer Science student at UMass Lowell, emily_seto@student.uml.edu
     Copyright (c) 2016 by Emily W. Seto. All rights reserved. May be freely copied or excerpted for
@@ -20,9 +20,10 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 	<!-- CSS customizations included and written by Emily Seto. -->
-	<link href="css/dashboard.css" rel="stylesheet">
+	<%= stylesheet_link_tag "index.css" %>
 </head>
 <body>
+
 <!-- Navigation bar information from: http://getbootstrap.com/components/#navbar. -->
 <nav class="navbar navbar-default navbar-static-top">
 	<div class="container-fluid">
@@ -34,28 +35,41 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">MercuriChat</a>
+			<a class="navbar-brand" href="index.html">MercuriChat</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling. -->
 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="dashboard.html">Dashboard</a></li>
-				<li><a href="#">Sign Out</a></li>
+				<li><a href="register.html">Get Started</a></li>
+				<li class="active"><a href="#">Sign In</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">The Team</a></li>
 			</ul>
 		</div>
 	</div>
 </nav><!-- End of navigation bar. -->
 
-<!-- Beginning of dashboard. -->
-<div class="row">
-	<div class="col-sm-3 col-d-2 sidebar">
-		<ul class="nav nav-sidebar">
-			<li>ehllo</li>
-			<li>baibai</li>
-		</ul>
-	</div>
-</div>
 
+<!-- Referenced from: getbootstrap.com/examples/signin/ -->
+<div class="container">
+	<form class="form-signin">
+		<%= form_tag("/login_attempt", method: "get") do %>
+				<h3>Sign In</h3>
+				<%= session[:error] if session[:error] %>
+				<label for="inputUN" class="sr-only">Email</label>
+				<input type="email" name="inputUN" class="form-control" placeholder="Username" value="<% form_authenticity_token %>" required autofocus>
+				<label for="inputPW" class="sr-only">Password</label>
+				<input type="password" name="inputPW" class="form-control" placeholder="Password" required>
+
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="remember-me">Remember me
+					</label>
+				</div>
+				<button class="btn btn-default" type="submit">Sign in</button>
+		<% end %>
+	</form>
+</div>
 </body>
 </html>
