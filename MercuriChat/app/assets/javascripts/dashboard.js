@@ -26,7 +26,11 @@ w.onmessage = function(e) {
 	var alrtstr1 = "<div class=\"alert alert-msg\" role=\"alert\">";
 	var alrtstr2 = "</div>";
 
-	displayMessage(alrtstr1 + e.data.toString() + alrtstr2);
+	// Printing out time and date:
+	var d = new Date();
+	var tmanddat = "<p class=\"tmdt\">" + d + "</p>";
+
+	displayMessage(alrtstr1 + tmanddat + e.data.toString() + alrtstr2);
 }
 
 // WebSocket Event: error
@@ -58,15 +62,24 @@ function handleKeyPress(e) {
 		return false;
 	}
 }
+//$("#inputMessage").keypress(function(e) {
+//	if (e.keyCode == 13) {
+//		$("#sendButton").click();
+//	}
+//});
 
 function displayMessage(s) {
-	var logOutput = document.getElementById("logOutput");
-	console.log("log: logOuput has been stored. ");
+	var logOutput = document.getElementById("msgOutput");
+	console.log("log: msgOuput has been stored. ");
 
 	// For debugging purposes:
 	//console.log("log:" + s);
 	var el = $("#msgOutput").before('<p>' + s + '</p>');
 	//console.log(el);
+
+	// Referenced from: http://stackoverflow.com/questions/270612/scroll-to-bottom-of-div
+	// Scrolls to the bottom of the  if overflowed:
+	$("#msg-history").scrollTop($("#msg-history")[0].scrollHeight);
 
 	// Referenced from: https://github.com/mathiasbynens/jquery-placeholder/issues/19
 	// Clear textarea and display placeholder:
