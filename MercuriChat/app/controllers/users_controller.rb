@@ -2,6 +2,7 @@ require 'bcrypt'
 
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # before_filter :authenticate_user!
 
   # GET /users
   # GET /users.json
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -40,6 +42,9 @@ class UsersController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
+        # Referenced from: https://www.railstutorial.org/book/log_in_log_out
+        # flash.now[:danger] = 'Invalid email/password combination'
+        # render 'new'
       end
     end
   end
@@ -79,6 +84,7 @@ class UsersController < ApplicationController
   def check_login(params)
     @user = User.where(email: params[:inputUN]).take
     if @user && @user.password && @user.password == params[:inputPW]
+<<<<<<< HEAD
       #Set their session variable to their id. Session variables provide memory to the stateless
       #web. At any time the clients browser accesses session[user], it obtains his public key in
       #the database, a unique identifier which allows the browser to always know who it is.
@@ -87,6 +93,22 @@ class UsersController < ApplicationController
     else
       flash[:error] = "Incorrect username or password. Please try again."
     end #if/else
+=======
+      #Set their session variable to their id
+      session[user] = @user.id
+      # log_in user
+      redirect_to @user
+      # redirect_to @current_user
+    else
+      puts @user
+      puts params[:inputPW]
+      puts params[:username]
+      puts params[:password]
+      # NOTE: I got errors when I had line 92.
+      # puts @user.password == params[:inputPW] if @user.password && params[:inputPW]
+      session[:error] = "Incorrect username or password. Please try again."
+    end
+>>>>>>> ab15b209eadb2957765153b79dd60761c4970c8c
   end
 
   ##From bcrypt gem

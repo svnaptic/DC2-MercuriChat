@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <!--
-    File:   http://www.cs.uml.edu/~eseto/Data_Communications_II/about.html
+    File:   http://www.cs.uml.edu/~eseto/Data_Communications_II/sign-in.html
     91.414 Data Communications II Project (MercuriChat)
     Emily Seto, Undergraduate Computer Science student at UMass Lowell, emily_seto@student.uml.edu
     Copyright (c) 2016 by Emily W. Seto. All rights reserved. May be freely copied or excerpted for
         educational purposes with credit to the author.
     The objective of this first assignment is to create an index for upcoming assignments in GUI.
-    Updated by EWS on March 31, 2016 at 12:45 PM
+    Updated by EWS on March 13, 2016 at 3:26 AM
 -->
 <html lang="en-US">
 	<head>
@@ -14,7 +14,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>MercuriChat - About</title>
+		<title>MercuriChat - Sign In</title>
 
 		<!-- Latest compiled and minified CSS from Bootstrap: -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -41,21 +41,29 @@
 				<div class="collapse navbar-collapse" id="navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="register.html">Get Started</a></li>
-						<li><a href="sign_in.html">Sign In</a></li>
-						<li class="active"><a href="#">About</a></li>
+						<li class="active"><a href="#">Sign In</a></li>
+						<li><a href="about.html">About</a></li>
 						<li><a href="team.html">The Team</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav><!-- End of navigation bar. -->
 
-		<!-- Beginning of the "About" portion -->
+		<!-- Referenced from: getbootstrap.com/examples/signin/ -->
 		<div class="container">
-			<div class="row">
-				<div class="col-md-3 col-md-offset-6">
-					<p>About the application here.</p>
+			<form class="form-signin">
+				<h3>Sign In</h3>
+				<label for="inputUN" class="sr-only">Username</label>
+				<input type="email" id="inputUN" class="form-control" placeholder="Username" required autofocus>
+				<label for "inputPW" class="sr-only">Password</label>
+				<input type="password" id="inputPW" class="form-control" placeholder="Password" required>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="remember-me">Remember me
+					</label>
 				</div>
-			</div>
+				<button class="btn btn-default" type="submit">Sign in</button>
+			</form>
 		</div>
 	</body>
 </html>
