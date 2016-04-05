@@ -35,5 +35,5 @@ In order to make your browser compatible with HTML5 WebSockets, we downloaded py
 5. In order to start this server, use the following command: `sudo python standalone.py -p <port_number_here> -w ../example/`
 6. After, open your webpage that utilizes HTML5 WebSockets.
 
-**NOTE:** All of these steps were based off of (http://www.tutorialspoint.com/html5/html5_websocket.htm "TutorialPoint's WebSocket page") with minor modifications to how I went through downloading and installing it.
+**NOTE:** All of these steps were based off of [TutorialPoint's WebSocket page](http://www.tutorialspoint.com/html5/html5_websocket.htm) with minor modifications to how I went through downloading and installing it.
 
