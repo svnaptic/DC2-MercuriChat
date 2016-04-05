@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # before_filter :authenticate_user!
 
   # GET /users
   # GET /users.json
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -38,6 +40,9 @@ class UsersController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
+        # Referenced from: https://www.railstutorial.org/book/log_in_log_out
+        # flash.now[:danger] = 'Invalid email/password combination'
+        # render 'new'
       end
     end
   end
@@ -74,12 +79,17 @@ class UsersController < ApplicationController
     @user = User.where(email: params[:inputUN]).take
     if @user && @user.password && @user.password == params[:inputPW]
       #Set their session variable to their id
-      #session[user] = @user.id
+      session[user] = @user.id
+      # log_in user
       redirect_to @user
+      # redirect_to @current_user
     else
       puts @user
       puts params[:inputPW]
-      puts @user.password == params[:inputPW] if @user.password && params[:inputPW]
+      puts params[:username]
+      puts params[:password]
+      # NOTE: I got errors when I had line 92.
+      # puts @user.password == params[:inputPW] if @user.password && params[:inputPW]
       session[:error] = "Incorrect username or password. Please try again."
     end
   end

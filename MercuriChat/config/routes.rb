@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   get 'sign_in'  => 'users#sign_in', as: :'sign_in'
   get 'about'    => 'users#about', as: :about
   get 'team'     => 'users#team', as: :team
- 
+  get 'dashboard'=> 'users#dashboard', as: :dashboard 
+
+  # Making edits for Devise:
+  # devise_for :users
 
   # Referenced from: http://rvg.me/2013/11/adding-a-bootstrap-3-layout-to-a-rails-4-project/
   # get '/about'    => 'high_voltage/users#show', id: 'about'
