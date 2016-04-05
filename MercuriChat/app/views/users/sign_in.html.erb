@@ -53,10 +53,10 @@
 
 <!-- Referenced from: getbootstrap.com/examples/signin/ -->
 <div class="container">
-	<form class="form-signin">
-		<%= form_tag("/login_attempt", method: "get") do %>
+		<%= form_tag('/sign_in', method: "get") do %>
 				<h3>Sign In</h3>
-				<%= session[:error] if session[:error] %>
+			<div id="error"><%= flash[:error] if flash[:error] %></div>
+			  <%= flash[:error] = nil if flash[:error] %>
 				<label for="inputUN" class="sr-only">Email</label>
 				<input type="email" name="inputUN" class="form-control" placeholder="Username" value="<% form_authenticity_token %>" required autofocus>
 				<label for="inputPW" class="sr-only">Password</label>
@@ -69,7 +69,6 @@
 				</div>
 				<button class="btn btn-default" type="submit">Sign in</button>
 		<% end %>
-	</form>
 </div>
 </body>
 </html>
