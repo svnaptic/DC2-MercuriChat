@@ -51,7 +51,7 @@
         <div class="form-group">
           <label for="emailAddress" class="col-sm-2 control-label">E-mail:</label>
           <div class="col-sm-8">
-            <%= f.text_field :email, :placeholder => 'Email Address', class:"form-control" %>
+            <%= f.email_field :email, :placeholder => 'Email Address', class:"form-control" %>
           </div>
         </div><!-- End of Email Address entry. -->
 
@@ -61,7 +61,7 @@
         <div class="form-group">
           <label for="password1" class="col-sm-2 control-label">Password:</label>
           <div class="col-sm-8">
-            <%= f.password_field 'password1', class:"form-control", :placeholder => 'Password' %>
+            <%= password_field(:password, :password, class:"form-control", :placeholder => 'Password') %>
             <!--input type="text" name="password1" class="form-control" id="password1" placeholder="Password"-->
           </div>
         </div><!-- End of Password entry. -->
@@ -72,8 +72,7 @@
         <div class="form-group">
           <label for="password2" class="col-sm-2 control-label">Password:</label>
           <div class="col-sm-8">
-            <!--input type="text" name="password2" class="form-control" id="password2" placeholder="Re-enter password"-->
-            <%= f.password_field 'password1', class:"form-control", :placeholder => 'Re-enter password' %>
+            <%= password_field(:password, :pw2, class:"form-control", :placeholder => 'Re-enter password') %>
           </div>
         </div><!-- End of Password Re-Check entry. -->
         <br><br>

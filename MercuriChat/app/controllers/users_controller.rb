@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   # before_filter :authenticate_user!
@@ -31,12 +33,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @user.password = params[:password]
+    @user.password = params[:password][:password]
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        format.html { redirect_to chat_path, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: chat_path }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -76,8 +78,22 @@ class UsersController < ApplicationController
   end #register
 
   def sign_in
+    check_login(params) if params[:inputUN]
+  end
+
+  def check_login(params)
     @user = User.where(email: params[:inputUN]).take
     if @user && @user.password && @user.password == params[:inputPW]
+<<<<<<< HEAD
+      #Set their session variable to their id. Session variables provide memory to the stateless
+      #web. At any time the clients browser accesses session[user], it obtains his public key in
+      #the database, a unique identifier which allows the browser to always know who it is.
+      session[:user] = @user.id
+      redirect_to chat_path
+    else
+      flash[:error] = "Incorrect username or password. Please try again."
+    end #if/else
+=======
       #Set their session variable to their id
       session[user] = @user.id
       # log_in user
@@ -92,6 +108,7 @@ class UsersController < ApplicationController
       # puts @user.password == params[:inputPW] if @user.password && params[:inputPW]
       session[:error] = "Incorrect username or password. Please try again."
     end
+>>>>>>> ab15b209eadb2957765153b79dd60761c4970c8c
   end
 
   ##From bcrypt gem
