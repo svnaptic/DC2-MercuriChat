@@ -2,12 +2,8 @@
 
 The goal of this project is to create a simple web client that uses TCP/WebSockets to connect to a chat server using HTML5, HTML5 WebSockets, CSS, JavaScript, and Ruby on Rails.
 
-***
-
 # Contributors
 Emily Seto, Therese Kuczynski
-
-***
 
 # Progress (Week 03/29)
 We started implementing Ruby on Rails and Bootstrap together (especially for the login and registration pages). We are still working on formatting the webpage. In order to run this application locally:
@@ -19,8 +15,6 @@ We started implementing Ruby on Rails and Bootstrap together (especially for the
 5. Go to your preferred browser, and type in "localhost:3000".
 
 **NOTE:** Make sure that you have Ruby and Ruby on Rails installed locally. We are still figuring out how to host it on an accessible server.
-
-***
 
 # Progress (Week 04/05)
 * The registration and sign in forms are almost all set!
@@ -41,5 +35,5 @@ In order to make your browser compatible with HTML5 WebSockets, we downloaded py
 5. In order to start this server, use the following command: `sudo python standalone.py -p <port_number_here> -w ../example/`
 6. After, open your webpage that utilizes HTML5 WebSockets.
 
-**NOTE:** All of these steps were based off of (http://www.tutorialspoint.com/html5/html5_websocket.htm "TutorialPoint's WebSocket page") with minor modifications to how I went through downloading and installing it.
+**NOTE:** All of these steps were based off of [TutorialPoint's WebSocket page](http://www.tutorialspoint.com/html5/html5_websocket.htm) with minor modifications to how I went through downloading and installing it.
 
