@@ -55,8 +55,8 @@
 <div class="container">
 		<%= form_tag('/sign_in', method: "get") do %>
 				<h3>Sign In</h3>
-			<div id="error"><%= flash[:error] if flash[:error] %></div>
-			  <%= flash[:error] = nil if flash[:error] %>
+			<div id="error"><%= session[:error] if session[:error] %></div>
+			  <%= session[:error] = nil if session[:error] %>
 				<label for="inputUN" class="sr-only">Email</label>
 				<input type="email" name="inputUN" class="form-control" placeholder="Username" value="<% form_authenticity_token %>" required autofocus>
 				<label for="inputPW" class="sr-only">Password</label>

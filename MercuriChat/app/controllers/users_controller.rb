@@ -84,41 +84,36 @@ class UsersController < ApplicationController
   def check_login(params)
     @user = User.where(email: params[:inputUN]).take
     if @user && @user.password && @user.password == params[:inputPW]
-<<<<<<< HEAD
+#<<<<<<< HEAD
       #Set their session variable to their id. Session variables provide memory to the stateless
       #web. At any time the clients browser accesses session[user], it obtains his public key in
       #the database, a unique identifier which allows the browser to always know who it is.
       session[:user] = @user.id
       redirect_to chat_path
-    else
-      flash[:error] = "Incorrect username or password. Please try again."
-    end #if/else
-=======
+    #else
+     # flash[:error] = "Incorrect username or password. Please try again."
+    #end #if/else
+#=======
       #Set their session variable to their id
-      session[user] = @user.id
+      #session[user] = @user.id
       # log_in user
-      redirect_to @user
+      #redirect_to @user
       # redirect_to @current_user
     else
-      puts @user
-      puts params[:inputPW]
-      puts params[:username]
+      puts "failed"
+      puts params
+      print "USER: "
+      puts "#{@user.first_name} #{@user.last_name}"
+      print "Password Correct ?: "
+      puts @user.password == params[:inputPW]
+      print "Username: "
+      puts params[:inputUN]
       puts params[:password]
       # NOTE: I got errors when I had line 92.
       # puts @user.password == params[:inputPW] if @user.password && params[:inputPW]
-      session[:error] = "Incorrect username or password. Please try again."
+      session[:error] = "Incorrect username or password. Please try again." if @user
     end
->>>>>>> ab15b209eadb2957765153b79dd60761c4970c8c
-  end
-
-  ##From bcrypt gem
-  def login_attempt(email, password)
-    @user = User.find_by_email(email)
-    if @user.password == password
-      #Set their session variable or something
-    else
-      redirect_to sign_in_path
-    end
+#>>>>>>> ab15b209eadb2957765153b79dd60761c4970c8c
   end
 
 

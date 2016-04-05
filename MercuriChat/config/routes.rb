@@ -7,14 +7,14 @@ Rails.application.routes.draw do
   get 'sign_in'  => 'users#sign_in', as: :'sign_in'
   get 'about'    => 'users#about', as: :about
   get 'team'     => 'users#team', as: :team
-<<<<<<< HEAD
+#<<<<<<< HEAD
   get 'chat'     => 'chat#index', as: :chat
-=======
+#=======
   get 'dashboard'=> 'users#dashboard', as: :dashboard 
 
   # Making edits for Devise:
   # devise_for :users
->>>>>>> ab15b209eadb2957765153b79dd60761c4970c8c
+#>>>>>>> ab15b209eadb2957765153b79dd60761c4970c8c
 
   # Referenced from: http://rvg.me/2013/11/adding-a-bootstrap-3-layout-to-a-rails-4-project/
   # get '/about'    => 'high_voltage/users#show', id: 'about'
