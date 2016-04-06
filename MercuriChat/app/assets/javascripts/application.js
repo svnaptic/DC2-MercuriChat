@@ -15,4 +15,7 @@
 //= require dashboard
 //= require bootstrap.min
 //= require turbolinks
+//= require websocket_rails/main
 //= require_tree .
+
+

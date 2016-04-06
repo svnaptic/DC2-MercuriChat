@@ -34,6 +34,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Adding high_voltage:
 gem 'high_voltage'
 
+gem 'thin'
+
+gem 'websocket-rails'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
