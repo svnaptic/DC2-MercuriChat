@@ -100,9 +100,14 @@ class UsersController < ApplicationController
       #redirect_to @user
       # redirect_to @current_user
     else
-      puts @user
-      puts params[:inputPW]
-      puts params[:username]
+      puts "failed"
+      puts params
+      print "USER: "
+      puts "#{@user.first_name} #{@user.last_name}"
+      print "Password Correct ?: "
+      puts @user.password == params[:inputPW]
+      print "Username: "
+      puts params[:inputUN]
       puts params[:password]
       # NOTE: I got errors when I had line 92.
       # puts @user.password == params[:inputPW] if @user.password && params[:inputPW]
@@ -110,8 +115,6 @@ class UsersController < ApplicationController
     end
 #>>>>>>> ab15b209eadb2957765153b79dd60761c4970c8c
   end
-
-  192.168.1.91
 
   private
   # Use callbacks to share common setup or constraints between actions.
