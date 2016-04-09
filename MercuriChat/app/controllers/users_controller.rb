@@ -81,6 +81,13 @@ class UsersController < ApplicationController
     check_login(params) if params[:inputUN]
   end
 
+  # Referenced from: https://www.railstutorial.org/book/log_in_log_out
+  # Logs out the current user.
+  def sign_out
+    session[:user] = nil
+    redirect_to index_path
+  end
+
   def check_login(params)
     @user = User.where(email: params[:inputUN]).take
     if @user && @user.password && @user.password == params[:inputPW]

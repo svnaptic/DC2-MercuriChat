@@ -37,6 +37,13 @@ gem 'high_voltage'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Faye and Thin in Rails:
+gem 'faye-rails'
+gem 'thin'
+
+# WebSocket-Rails:
+gem 'websocket-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
