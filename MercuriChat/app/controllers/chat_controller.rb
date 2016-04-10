@@ -1,4 +1,7 @@
+require 'faye/websocket'
+@ws
 
 class ChatController < ApplicationController
-  
-end
+
+
+end #class

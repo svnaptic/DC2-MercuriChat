@@ -6,7 +6,7 @@ Rails.application.config.assets.version = '1.0'
 # To pre-compile:
 Rails.application.config.assets.precompile += %w( index.css )
 Rails.application.config.assets.precompile += %w( dashboard.css )
-
+Rails.application.config.assets.precompile += %w( dashboard.js )
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path
 

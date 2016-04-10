@@ -37,8 +37,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to chat_path, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: chat_path }
+        format.html { redirect_to dashboard_path, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: dashboard_path }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -89,7 +89,7 @@ class UsersController < ApplicationController
       #web. At any time the clients browser accesses session[user], it obtains his public key in
       #the database, a unique identifier which allows the browser to always know who it is.
       session[:user] = @user.id
-      redirect_to chat_path
+      redirect_to dashboard_path
     #else
      # flash[:error] = "Incorrect username or password. Please try again."
     #end #if/else
@@ -103,15 +103,14 @@ class UsersController < ApplicationController
       puts "failed"
       puts params
       print "USER: "
-      puts "#{@user.first_name} #{@user.last_name}"
       print "Password Correct ?: "
-      puts @user.password == params[:inputPW]
+      puts @user.password == params[:inputPW] if @user
       print "Username: "
       puts params[:inputUN]
       puts params[:password]
       # NOTE: I got errors when I had line 92.
       # puts @user.password == params[:inputPW] if @user.password && params[:inputPW]
-      session[:error] = "Incorrect username or password. Please try again." if @user
+      session[:error] = "Incorrect username or password. Please try again."
     end
 #>>>>>>> ab15b209eadb2957765153b79dd60761c4970c8c
   end

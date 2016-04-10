@@ -1,7 +1,13 @@
 // Referenced from "The Definitive Guide to HTML5 WebSocket"
-// Start a new WebSocket:
-url = "ws://localhost:8080/echo";
-w = new WebSocket(url);
+// Start a new WebSocket
+
+//= require jquery
+//= require jquery_ujs
+
+url = "ws://localhost:3000";  
+//url = "ws://localhost:8080/echo";
+w = new WebSocket(url);  
+
 
 // The following WebSocket events are referenced from the following sources--
 // Referenced from: https://www.youtube.com/watch?v=WDowDtfWiGQ 
