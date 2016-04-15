@@ -37,3 +37,8 @@ In order to make your browser compatible with HTML5 WebSockets, we downloaded py
 
 **NOTE:** All of these steps were based off of [TutorialPoint's WebSocket page](http://www.tutorialspoint.com/html5/html5_websocket.htm) with minor modifications to how I went through downloading and installing it.
 
+Week of 4/12
+* After spending a significant amount of time trying to install websocket-rails gem (module) which we chose because its api allowed for the most elegant coding style in our opinion, we switched to the Faye websocket gem.
+* Server is up running as Rack middleware between the server and the client. 
+* Realized that reading the Rails source code to try to find the most elegant way to interface with its behind-the-scenes encryption algorithms (and to learn more about cookie handling and security) was too time consuming, and found how to decrypt cookies in the middleware online. 
+* Server can send and recieve to one client only. Our original plan was to spawn a thread with a websocket for each client in the middleware (making sure everything is threadsafe, of course!), so to send a message from one client to another, two threads would have to be open, each with a websocket listening for a message. However, Rack is throwing an error when we spawn a thread, and there isn't a lot of documentation on that particular error. 
