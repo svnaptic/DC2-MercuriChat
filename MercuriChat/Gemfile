@@ -36,6 +36,10 @@ gem 'high_voltage'
 
 gem 'thin'
 
+gem 'connection_pool'
+
+gem 'memcachier'
+
 gem 'faye-websocket'
 
 # Use ActiveModel has_secure_password

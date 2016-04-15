@@ -29,7 +29,7 @@ class Websocket
 
    # }
       t = Thread.new{chat_thread(@user, env)}
-      t.join
+      t.join 
 
     else
       @app.call(env)
