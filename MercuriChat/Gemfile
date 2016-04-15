@@ -38,15 +38,26 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Adding high_voltage:
 gem 'high_voltage'
 
+gem 'thin'
+
+gem 'connection_pool'
+
+gem 'memcachier'
+
+gem 'faye-websocket'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+
+gem 'gon'
+
+gem 'dalli'  
+
+gem 'jquery-ui-rails'
 
 # Faye and Thin in Rails:
 gem 'faye-rails'
 gem 'thin'
-
-# WebSocket-Rails:
-gem 'websocket-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

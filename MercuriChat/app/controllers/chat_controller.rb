@@ -1,4 +1,10 @@
+require 'faye/websocket'
+@ws
 
 class ChatController < ApplicationController
-  
-end
+
+  def dashboard
+    gon.users = User.all
+  end
+
+end #class

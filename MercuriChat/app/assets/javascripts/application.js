@@ -13,6 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
+<<<<<<< HEAD
+//= require jquery-ui/autocomplete
+//= require turbolinks
+//= require dashboard
+//= require_tree .
+
+
+=======
 //= require dashboard
 //= require websockets
 //= require_tree ../../../vendor/assets/javascripts/.
@@ -33,3 +41,4 @@ $(document).ready(function() {
 		$('#count').text(count);
 	}
 });
+>>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3

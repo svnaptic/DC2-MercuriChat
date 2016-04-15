@@ -8,9 +8,12 @@ Rails.application.routes.draw do
   get 'about'    => 'users#about', as: :about
   get 'team'     => 'users#team', as: :team
 #<<<<<<< HEAD
-  get 'chat'     => 'chat#index', as: :chat
+  get 'dashboard'     => 'chat#dashboard', as: :dashboard
 #=======
+<<<<<<< HEAD
+=======
 #  get 'dashboard'=> 'users#dashboard', as: :dashboard 
+>>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3
 
   # Making edits for Devise:
   # devise_for :users
