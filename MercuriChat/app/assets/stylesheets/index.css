@@ -52,13 +52,21 @@ html, body {
     padding-left: 20px;
 }
 
+.tmdt {
+    font-weight: bold;
+}
+
 /* Edits for msg-history and msg-send: */
 #msg-history {
     height: 80vh;
+    margin-bottom: 15px;
+    display: block;
+    overflow:auto;
 }
 
 #msg-send {
     height: 15vh;
+    display: block;
 }
 
 /* Referenced from: https://getbootstrap.com/examples/dashboard/dashboard.css */

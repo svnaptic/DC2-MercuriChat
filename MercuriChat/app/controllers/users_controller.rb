@@ -81,6 +81,13 @@ class UsersController < ApplicationController
     check_login(params) if params[:inputUN]
   end
 
+  # Referenced from: https://www.railstutorial.org/book/log_in_log_out
+  # Logs out the current user.
+  def sign_out
+    session[:user] = nil
+    redirect_to index_path
+  end
+
   def check_login(params)
     @user = User.where(email: params[:inputUN]).take
     if @user && @user.password && @user.password == params[:inputPW]
@@ -91,7 +98,7 @@ class UsersController < ApplicationController
       session[:user] = @user.id
       redirect_to dashboard_path
     #else
-     # flash[:error] = "Incorrect username or password. Please try again."
+    #  flash[:error] = "Incorrect username or password. Please try again."
     #end #if/else
 #=======
       #Set their session variable to their id
@@ -114,7 +121,6 @@ class UsersController < ApplicationController
     end
 #>>>>>>> ab15b209eadb2957765153b79dd60761c4970c8c
   end
-
 
   private
   # Use callbacks to share common setup or constraints between actions.

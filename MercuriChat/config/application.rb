@@ -23,6 +23,12 @@ module MercuriChat
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    # Config Websockets on Rails:
+    config.middleware.delete Rack::Lock
+
+    # Config Faye on Rails:
+    # config.middleware.use Faye::RackAdapter, :mount => '/faye', :timeout => 25
+
     # Referenced from: http://stackoverflow.com/questions/18700219/rails-4-assets-not-loading-in-production
     # Enable asset pipeline:
     # config.assets.compile = true

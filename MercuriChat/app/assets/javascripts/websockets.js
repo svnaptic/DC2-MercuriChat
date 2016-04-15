@@ -1,18 +1,10 @@
-<<<<<<< HEAD
+// Code for HTML5 WebSockets implementation: 
+
 // Referenced from "The Definitive Guide to HTML5 WebSocket"
-// Start a new WebSocket
-
-//= require jquery
-//= require jquery_ujs
-
-$( "#searchbox" ).autocomplete({
-    source: gon.users
-});
-  
-url = "ws://localhost:3000";  
-//url = "ws://localhost:8080/echo";
-w = new WebSocket(url);  
-
+// Start a new WebSocket:
+//var w = new WebSocketRails('localhost:3000/websocket')
+url = "ws://localhost:8080/echo";
+var w = new WebSocket(url);
 
 // The following WebSocket events are referenced from the following sources--
 // Referenced from: https://www.youtube.com/watch?v=WDowDtfWiGQ 
@@ -37,7 +29,11 @@ w.onmessage = function(e) {
 	var alrtstr1 = "<div class=\"alert alert-msg\" role=\"alert\">";
 	var alrtstr2 = "</div>";
 
-	displayMessage(alrtstr1 + e.data.toString() + alrtstr2);
+	// Printing out time and date:
+	var d = new Date();
+	var tmanddat = "<p class=\"tmdt\">" + d + "</p>";
+
+	displayMessage(alrtstr1 + tmanddat + e.data.toString() + alrtstr2);
 }
 
 // WebSocket Event: error
@@ -58,17 +54,22 @@ window.onload = function() {
 		w.send(document.getElementById("inputMessage").value);
 	}
 }
-=======
-// Code for general purpose Dashboard layout:
->>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3
 
-// Referenced from: http://stackoverflow.com/questions/155188/trigger-a-button-click-with-javascript-on-the-enter-key-in-a-text-box
-function handleKeyPress(e) {
-	if (e.keyCode === 13) {
-		var sb = document.getElementById("sendButton");
-		sb.click();
-		return true;
-	} else {
-		return false;
-	}
+function displayMessage(s) {
+	var logOutput = document.getElementById("msgOutput");
+	console.log("log: msgOuput has been stored. ");
+
+	// For debugging purposes:
+	//console.log("log:" + s);
+	var el = $("#msgOutput").before('<p>' + s + '</p>');
+	//console.log(el);
+
+	// Referenced from: http://stackoverflow.com/questions/270612/scroll-to-bottom-of-div
+	// Scrolls to the bottom of the  if overflowed:
+	$("#msg-history").scrollTop($("#msg-history")[0].scrollHeight);
+
+	// Referenced from: https://github.com/mathiasbynens/jquery-placeholder/issues/19
+	// Clear textarea and display placeholder:
+	$('#inputMessage').val('').blur();
+	$('#inputMessage').focus();
 }
