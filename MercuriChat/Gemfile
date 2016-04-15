@@ -45,21 +45,18 @@ gem 'faye-websocket'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
 gem 'gon'
 
 gem 'dalli'  
 
 gem 'jquery-ui-rails'
-=======
+#=======
 # Faye and Thin in Rails:
 gem 'faye-rails'
 gem 'thin'
 
-# WebSocket-Rails:
-gem 'websocket-rails'
-
->>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3
+#>>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3
 # Use Unicorn as the app server
 # gem 'unicorn'
 
