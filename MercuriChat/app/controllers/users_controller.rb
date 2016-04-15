@@ -37,6 +37,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        # Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html#sending-emails
+        UserMailer.welcome_email(@user).deliver_later
+
         format.html { redirect_to chat_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: chat_path }
       else
