@@ -3,5 +3,8 @@ require 'faye/websocket'
 
 class ChatController < ApplicationController
 
+  def dashboard
+    gon.users = User.all
+  end
 
 end #class

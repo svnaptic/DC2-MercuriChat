@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :users
+  belongs_to :users
+  has_many :chats
   #Straight from Bcrypt Github docs
   # users.password_hash in the database is a :string
   include BCrypt

@@ -4,6 +4,10 @@
 //= require jquery
 //= require jquery_ujs
 
+$( "#searchbox" ).autocomplete({
+    source: gon.users
+});
+  
 url = "ws://localhost:3000";  
 //url = "ws://localhost:8080/echo";
 w = new WebSocket(url);  

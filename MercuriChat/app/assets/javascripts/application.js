@@ -12,9 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require dashboard
 //= require bootstrap.min
+//= require jquery-ui/autocomplete
 //= require turbolinks
+//= require dashboard
 //= require_tree .
 
-      
+
