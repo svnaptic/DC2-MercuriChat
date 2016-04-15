@@ -38,8 +38,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Adding high_voltage:
 gem 'high_voltage'
 
-gem 'thin'
-
 gem 'connection_pool'
 
 gem 'memcachier'

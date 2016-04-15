@@ -55,14 +55,10 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.1)
-<<<<<<< HEAD
     connection_pool (2.2.0)
-    daemons (1.2.3)
-    dalli (2.7.6)
-=======
     cookiejar (0.3.0)
     daemons (1.2.3)
->>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3
+    dalli (2.7.6)
     debug_inspector (0.0.2)
     devise (3.5.6)
       bcrypt (~> 3.0)
@@ -79,13 +75,7 @@ GEM
       http_parser.rb (>= 0.6.0)
     em-socksify (0.3.1)
       eventmachine (>= 1.0.0.beta.4)
-    em-synchrony (1.0.4)
-      eventmachine (>= 1.0.0.beta.1)
     erubis (2.7.0)
-<<<<<<< HEAD
-    eventmachine (1.2.0.1)
-    execjs (2.6.0)
-=======
     eventmachine (1.0.9.1)
     execjs (2.6.0)
     faye (1.1.2)
@@ -99,24 +89,18 @@ GEM
     faye-rails (2.0.1)
       eventmachine (~> 1.0.0)
       faye (~> 1.1.1)
->>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3
     faye-websocket (0.10.3)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-<<<<<<< HEAD
     gon (6.0.1)
       actionpack (>= 3.0)
       json
       multi_json
       request_store (>= 1.0)
-    high_voltage (2.1.0)
-=======
-    high_voltage (2.4.0)
-    hiredis (0.6.1)
+    high_voltage (3.0.0)
     http_parser.rb (0.6.0)
->>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3
     i18n (0.7.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -134,18 +118,12 @@ GEM
       launchy (~> 2.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-<<<<<<< HEAD
-    mail (2.6.3)
-      mime-types (>= 1.16, < 3)
-    memcachier (0.0.2)
-    mime-types (2.99.1)
-=======
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    memcachier (0.0.2)
     mime-types (3.0)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0221)
->>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
@@ -182,13 +160,7 @@ GEM
     rake (11.1.2)
     rdoc (4.2.2)
       json (~> 1.4)
-<<<<<<< HEAD
     request_store (1.3.1)
-=======
-    redis (3.2.2)
-    redis-objects (1.2.1)
-      redis (>= 3.0.2)
->>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3
     responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
     sass (3.4.22)
@@ -201,7 +173,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    spring (1.6.4)
+    spring (1.7.1)
     sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -233,18 +205,6 @@ GEM
     websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
-<<<<<<< HEAD
-=======
-    websocket-rails (0.7.0)
-      em-synchrony
-      faye-websocket
-      hiredis
-      rack
-      rails
-      redis
-      redis-objects
-      thin
->>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3
 
 PLATFORMS
   ruby
@@ -258,21 +218,15 @@ DEPENDENCIES
   connection_pool
   dalli
   devise
-<<<<<<< HEAD
+  faye-rails
   faye-websocket
   gon
-=======
-  faye-rails
->>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3
   high_voltage
   jbuilder (~> 2.0)
   jquery-rails
-<<<<<<< HEAD
-  letter_opener
-=======
   jquery-ui-rails
+  letter_opener
   memcachier
->>>>>>> ab89e4a4d279da3a57d9ef2a8f3a52993d98d5b1
   rails (= 4.2.6)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -282,7 +236,6 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
-  websocket-rails
 
 BUNDLED WITH
    1.11.2
