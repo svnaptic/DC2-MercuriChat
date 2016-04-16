@@ -27,12 +27,16 @@ module MercuriChat
     config.middleware.delete Rack::Lock
 
     # Config Faye on Rails:
-    # config.middleware.use Faye::RackAdapter, :mount => '/faye', :timeout => 25
+     config.middleware.use Faye::RackAdapter, :mount => '/faye', :timeout => 50
 
     # Referenced from: http://stackoverflow.com/questions/18700219/rails-4-assets-not-loading-in-production
     # Enable asset pipeline:
     # config.assets.compile = true
     # config.assets.precompile = ['*.js', '*.css', '*.css.erb']
     config.middleware.delete Rack::Lock
+
+    config.action_controller.perform_caching = false
+
+
   end
 end

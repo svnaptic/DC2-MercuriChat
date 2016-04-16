@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Referenced from "The Definitive Guide to HTML5 WebSocket"
 // Start a new WebSocket
 
@@ -8,10 +7,6 @@
 $( "#searchbox" ).autocomplete({
     source: gon.users
 });
-  
-url = "ws://localhost:3000";  
-//url = "ws://localhost:8080/echo";
-w = new WebSocket(url);  
 
 
 // The following WebSocket events are referenced from the following sources--
@@ -58,9 +53,6 @@ window.onload = function() {
 		w.send(document.getElementById("inputMessage").value);
 	}
 }
-=======
-// Code for general purpose Dashboard layout:
->>>>>>> 697ba6b1c84dfce54b44f48b5dc31260997473f3
 
 // Referenced from: http://stackoverflow.com/questions/155188/trigger-a-button-click-with-javascript-on-the-enter-key-in-a-text-box
 function handleKeyPress(e) {
