@@ -29,15 +29,11 @@ class Websocket
     #t = Thread.new {
 
    # }
-      @env = env
        user = @user
 
-        @@ws[user] = Faye::WebSocket.new(@env)
+        @@ws[user] = Faye::WebSocket.new(env)
       @@ws[user].on :message do |event|
-        puts "*******"
-        puts event
-        puts "********"
-        prepended_data = user.first_name + "#{event.data}"
+        prepended_data = user.first_name + ": #{event.data}"
         @@ws.each do |name, socket|
           puts socket
           puts @user
@@ -61,23 +57,6 @@ class Websocket
     end
   end
 
-  #REMEMBER TO CLOSE THREAD WHEN SOCKET CLOSES!!!
-  def chat_thread(user, env)
-    puts "Setting up thread for #{user}"
-    puts "#{@user.first_name} #{@user.last_name}"
-    @@ws[@user].on :message do |event|
-      prepended_data = "#{@user.first_name} #{@user.last_name}: " + "#{event.data}"
-      @@ws[@user].send(prepended_data)
-    end
-
-    @@ws[@user].on :close do |event|
-      p [:close, event.code, event.reason]
-      ws = nil
-    end
-
-    # Return async Rack response
-    @@ws[@user].rack_response
-  end
 
   def decrypt_session_cookie(cookie, key)
     cookie = CGI::unescape(cookie)
