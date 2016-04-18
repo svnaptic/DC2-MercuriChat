@@ -15,5 +15,7 @@
   <%= @user.email %>
 </p>
 
+<%#= button_to "Add Friend", { action: "add_friend", friend: @user.id} %>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

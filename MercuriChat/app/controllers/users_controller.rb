@@ -1,7 +1,7 @@
 require 'bcrypt'
 
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
   # before_filter :authenticate_user!
 
   # GET /users
@@ -14,10 +14,15 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def add_friend
+
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    @user = User.where(first_name: params[:find_friend].split[0], last_name: params[:find_friend].split[1]).take
+    #@user = User.find(params[:find_friend])
   end
 
   # GET /users/new

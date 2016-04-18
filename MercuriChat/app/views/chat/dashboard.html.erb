@@ -48,11 +48,13 @@
             </ul>
 
 			<!-- Will eventually allow users to search for other people using the client: -->
-			<form class="navbar-form navbar-right">
-				<div class="searchbox">
-				  <input type="text" class="form-control" placeholder="Search...">
+			<!--form class="navbar-form navbar-right" action=" " method=""-->
+			<%= form_tag({controller: "users", action: "show", id: "id"}, method: "get", class: "navbar-form navbar-right") do %>
+			<div class="searchbox">
+        <%= text_field_tag "find_friend", nil, class: "form-control", :placeholder => "Search..." %>
 		    </div>
-			</form>
+			<% end %>
+			<!--/form-->
 		</div>
 	</div>
 </nav><!-- End of navigation bar. -->

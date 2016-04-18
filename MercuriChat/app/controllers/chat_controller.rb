@@ -4,7 +4,13 @@ require 'faye/websocket'
 class ChatController < ApplicationController
 
   def dashboard
-    gon.users = User.all
+    userlist = []
+    User.all.each do |u|
+      userlist.push("#{u.first_name} #{u.last_name}")
+    end
+    gon.users = userlist
   end
+
+
 
 end #class
