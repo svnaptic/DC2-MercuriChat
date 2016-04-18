@@ -21,8 +21,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.where(first_name: params[:find_friend].split[0], last_name: params[:find_friend].split[1]).take
-    #@user = User.find(params[:find_friend])
+    #@user = User.where(first_name: params[:find_friend].split[0], last_name: params[:find_friend].split[1]).take
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -43,10 +43,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         # Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html#sending-emails
-        # UserMailer.welcome_email(@user).deliver_later
+        UserMailer.welcome_email(@user).deliver_later
 
-        format.html { redirect_to chat_path, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: chat_path }
+        format.html { redirect_to dashboard_path, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: dashboard_path }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }

@@ -33,7 +33,7 @@ class Websocket
 
         @@ws[user] = Faye::WebSocket.new(env)
       @@ws[user].on :message do |event|
-        prepended_data = user.first_name + ": #{event.data}"
+        prepended_data = user.first_name +  " " + user.last_name + ": #{event.data}"
         @@ws.each do |name, socket|
           puts socket
           puts @user

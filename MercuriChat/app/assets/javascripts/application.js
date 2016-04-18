@@ -10,9 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require bootstrap.min
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.min
 //= require jquery-ui/autocomplete
 //= require dashboard
 //= require websockets

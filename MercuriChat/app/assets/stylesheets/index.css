@@ -13,6 +13,17 @@ html, body {
     border: 0;
 }
 
+h1 {
+    font-size: 64px;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+li.nav-dropdown-active {
+    background-color: #ECF0F1;
+    color: #8E44AD;
+}
+
 /* Referenced from: https://getbootstrap.com/examples/dashboard/dashboard.css */
 .navbar-fixed-top {
     border: 0;
@@ -101,6 +112,7 @@ html, body {
     color: #FFFFFF;    /* Changes the font color of Bootstrap's default for navbar-brand. */
 }
 
+.navbar-default .navbar-brand:active,
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
     background-color: #8E44AD;      /* "Wisteria", taken from: https://flatuicolors.com/ */
@@ -151,8 +163,3 @@ a:link { color:#555555; text-decoration:none; }
 a:visited{ color:#444444; text-decoration:none; }
 a:hover { color:#BBBBBB; text-decoration:none; }
 a:active { color:#AAAAAA; text-decoration:none; }
-
-h1 {
-    font-size: 64px;
-    text-align: center;
-}

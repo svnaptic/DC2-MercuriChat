@@ -4,8 +4,8 @@
 	<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-	<h1>Welcome to MercuriChat, <%= @user.name %></h1>.
-	<p> You have successfully signed up for MercuriChat, your username is: <%= @user.login %>.<br /></p>
+	<h1>Welcome to MercuriChat, <strong><%= @user.first_name %>!</strong></h1>
+	<p> You have successfully signed up for MercuriChat, your username is: <strong><%= @user.email %></strong>.<br /></p>
 	<p>To login to the site, just follow this link: <%= @url %>.<br /></p>
 	<p>Thanks for joing us, and have a great day!</p>
 </body>
