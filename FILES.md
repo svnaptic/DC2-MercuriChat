@@ -41,24 +41,19 @@
 |   			+-- index.html.erb
 |   			+-- indexnot.html.erb (DEBUGGING)
 |   			+-- show.html.erb
-|   			+-- sign-in.html.erb
+|   			+-- sign-in.html.erb  (OLD FILE)
 |   			+-- sign_in.html.erb
+|   			+-- team.html.erb
+|   +-- config
+|   	+-- environments
+|   		+-- development.rb
+|   		+-- production.rb
+|   		+-- test.rb
+|   	+-- initializers
+|   		+-- assets.rb
+|   		+-- devise.rb
+|   		+-- high_voltage.rb
+|   		+-- session_store.rb
+|   	+-- application.rb
+|   	+-- routes.rb
 
-.
-+-- _config.yml
-+-- _drafts
-|   +-- begin-with-the-crazy-ideas.textile
-|   +-- on-simplicity-in-technology.markdown
-+-- _includes
-|   +-- footer.html
-|   +-- header.html
-+-- _layouts
-|   +-- default.html
-|   +-- post.html
-+-- _posts
-|   +-- 2007-10-29-why-every-programmer-should-play-nethack.textile
-|   +-- 2009-04-26-barcamp-boston-4-roundup.textile
-+-- _data
-|   +-- members.yml
-+-- _site
-+-- index.html

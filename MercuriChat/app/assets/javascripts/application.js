@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
+//= require jquery-ui/autocomplete
 //= require dashboard
 //= require websockets
 //= require_tree ../../../vendor/assets/javascripts/.

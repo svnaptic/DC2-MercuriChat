@@ -3,7 +3,7 @@
 // Referenced from "The Definitive Guide to HTML5 WebSocket"
 // Start a new WebSocket:
 //var w = new WebSocketRails('localhost:3000/websocket')
-url = "ws://localhost:8080/echo";
+url = "ws://localhost:3000/dashboard";
 var w = new WebSocket(url);
 
 // The following WebSocket events are referenced from the following sources--
