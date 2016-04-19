@@ -14,15 +14,23 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def add_friend
-
-  end
-
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.where(first_name: params[:find_friend].split[0], last_name: params[:find_friend].split[1]).take
-    #@user = User.find(params[:find_friend])
+    @user = User.where(first_name: params[:find_friend].split[0], last_name: params[:find_friend].split[1]).take if params[:find_friend]
+    @user = User.find(params[:id]) if !@user
+
+    if request.xhr?
+      me = User.find(session[:user])
+      #Create friendship unless it exists.
+      friend_request = me.friendships.build(:friend_id => @user.id) unless me.friendships.where(friend_id: @user.id).take
+      if friend_request.save
+        #Friend added message.
+      else
+        #Friend not added message.
+
+      end
+    end
   end
 
   # GET /users/new
@@ -138,6 +146,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password_hash, :password_salt)
+    params.require(:user).permit(:first_name, :last_name, :avatar, :email, :password_hash, :password_salt)
   end
 end

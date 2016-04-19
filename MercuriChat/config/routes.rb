@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 #=======
 
 
+
   # Making edits for Devise:
   # devise_for :users
 

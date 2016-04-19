@@ -20,7 +20,7 @@ w.onopen = function() {
 	// w.send(str);
 	// console.log("w.onopen: <" + str + "> was sent!");
 }
-
+  
 // WebSocket Event: message
 // Description: occurs when the client receives data from server.
 w.onmessage = function(e) {

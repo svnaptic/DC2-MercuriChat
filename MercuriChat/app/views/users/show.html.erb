@@ -1,7 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag @user.avatar.url(:medium) if @user.avatar %>
+
+
 <p>
   <strong>First Name:</strong>
+
+  <% puts @user %>
+
   <%= @user.first_name %>
 </p>
 
@@ -15,7 +21,14 @@
   <%= @user.email %>
 </p>
 
-<%#= button_to "Add Friend", { action: "add_friend", friend: @user.id} %>
+<!--Avatar code straight from official documentation. -->
 
+Upload Avatar:
+<%= simple_form_for @user, method: "get", url: users_path do |form| %>
+    <%= form.input :avatar, as: :file %>
+    <%= form.submit "Upload Avatar" %>
+<% end %>
+
+<%= button_to "Add Friend", user_path(@user.id), method: "get", remote: true %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
