@@ -46,10 +46,9 @@ In order to make your browser compatible with HTML5 WebSockets, we downloaded py
 # Progress (Week 04/19)
 * We have successfully implemented the Thin server and Faye! :D
 * Once logged into the application, you can:
-	* talk to anyone that is currently accessing that page,
-	* search for other users, and
-	* view your own profile.
+	* search for other users and add them as friends
+	* view your own profile
+	* choose a friend for 1-to-1 chat.
 * Right now, messages are broadcasted on 1 page. 
-	* We are working on creating 1-to-1 communication and logging messages.
+	* We are working on creating an interface for group chats and logging messages.
 * Sending an email after successful registration works.
-* Currently working on adding other users as "friends" to an account.
