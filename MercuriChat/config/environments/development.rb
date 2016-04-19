@@ -13,9 +13,6 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -49,7 +46,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = { from: 'mercurichat.sp16@gmail.com'}
+  config.action_mailer.default_options = { from: 'user_name@example.com'}
 
   # Configuring Action Mailer for Gmail:
   # Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html
@@ -58,8 +55,8 @@ Rails.application.configure do
     address:        'smtp.gmail.com',
     port:           587,
     domain:         'localhost:3000',
-    user_name:      'mercurichat.sp16@gmail.com',
-    password:       'ChatMercuri2016',
+    user_name:      'user_name@example.com',
+    password:       'password',
     authentication: 'plain',
     enable_starttls_auto: true }
 
