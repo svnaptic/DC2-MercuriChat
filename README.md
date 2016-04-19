@@ -49,6 +49,5 @@ In order to make your browser compatible with HTML5 WebSockets, we downloaded py
 	* search for other users and add them as friends
 	* view your own profile
 	* choose a friend for 1-to-1 chat.
-* Right now, messages are broadcasted on 1 page. 
 	* We are working on creating an interface for group chats and logging messages.
 * Sending an email after successful registration works.
