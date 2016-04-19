@@ -112,8 +112,6 @@
 # Description of Modified Directories and Files:
 Under the main directory, *Gemfile* is the file we use to download different gems (or packages); these installations are represented in *Gemfile.lock*. Both *config.ru* and *faye.ru* were modified to support the Thin server and Faye. 
 
-*****
-
 ## app/assets
 Under **/javascripts** and **/stylesheets**, we have our unique Javascript and CSS for the webpage. 
 <ul>
