@@ -27,6 +27,7 @@ class Websocket
 
         @@ws[user] = Faye::WebSocket.new(env)
       @@ws[user].on :message do |event|
+<<<<<<< HEAD
         prepended_data = "#{user.first_name} #{user.last_name}" + ": #{event.data}"
         #Send data to all friends in conversation.
 
@@ -46,6 +47,14 @@ class Websocket
         #@@ws.each do |name, socket|
         #  socket.send(prepended_data)
         #end
+=======
+        prepended_data = user.first_name +  " " + user.last_name + ": #{event.data}"
+        @@ws.each do |name, socket|
+          puts socket
+          puts @user
+          socket.send(prepended_data)
+        end
+>>>>>>> f0b8f8975041488fd98c28cdd866c27573d1cac3
       end
 
       @@ws[@user].on :close do |event|

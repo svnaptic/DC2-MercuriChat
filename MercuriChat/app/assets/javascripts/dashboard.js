@@ -1,5 +1,5 @@
-// Referenced from "The Definitive Guide to HTML5 WebSocket"
-// Start a new WebSocket
+// Code for general purpose Dashboard layout:
+// Start a new WebSocket:
 
 //= require jquery
 //= require jquery_ujs
@@ -22,13 +22,6 @@ $(".searchbox").keypress(function(e)
       return false   
     }
 });
-
-// On load, retrieve the message by button trigger:
-window.onload = function() {
-	document.getElementById("sendButton").onclick = function() {
-		w.send(document.getElementById("inputMessage").value);
-	}
-}
 
 // Referenced from: http://stackoverflow.com/questions/155188/trigger-a-button-click-with-javascript-on-the-enter-key-in-a-text-box
 function handleKeyPress(e) {

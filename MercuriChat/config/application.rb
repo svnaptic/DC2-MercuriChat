@@ -29,6 +29,9 @@ module MercuriChat
     # Config Faye on Rails:
      config.middleware.use Faye::RackAdapter, :mount => '/faye', :timeout => 50
 
+    # Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html
+    config.action_mailer.default_url_options = { host: 'localhost:3000'}
+
     # Referenced from: http://stackoverflow.com/questions/18700219/rails-4-assets-not-loading-in-production
     # Enable asset pipeline:
     # config.assets.compile = true
