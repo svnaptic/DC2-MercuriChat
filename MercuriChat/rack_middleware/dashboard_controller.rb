@@ -35,13 +35,10 @@ class Websocket
           #http://stackoverflow.com/questions/21446369/deleting-all-special-characters-from-a-string-ruby
           formatted_friend = friend.gsub!(/[^0-9A-Za-z]/, '').to_i
           if formatted_friend == 0
-            formatted_friend = @@talking_to[user]    
+            formatted_friend = @@talking_to[user]
           else
             @@talking_to[user] = formatted_friend
           end
-          puts "********************"
-          puts "FRIEND = #{formatted_friend.to_i}"
-          puts "*********************"
           @@ws[User.find(formatted_friend.to_i)].send(prepended_data) if @@ws[User.find(formatted_friend.to_i)]
         end #do
         #And send the data to yourself.

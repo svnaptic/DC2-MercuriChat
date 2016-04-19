@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 4.1.0'
 #For paperclip gem syntax.
 gem 'simple_form'
 
+#Required for paperclip gem.
+gem 'aws-sdk'
+
 #For avatars/file upload
 gem "paperclip", "~> 5.0.0.beta1"
 
