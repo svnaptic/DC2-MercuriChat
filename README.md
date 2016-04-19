@@ -42,3 +42,14 @@ In order to make your browser compatible with HTML5 WebSockets, we downloaded py
 * Server is up running as Rack middleware between the server and the client. 
 * Realized that reading the Rails source code to try to find the most elegant way to interface with its behind-the-scenes encryption algorithms (and to learn more about cookie handling and security) was too time consuming, and found how to decrypt cookies in the middleware online. 
 * Server can send and recieve to one client only. Our original plan was to spawn a thread with a websocket for each client in the middleware (making sure everything is threadsafe, of course!), so to send a message from one client to another, two threads would have to be open, each with a websocket listening for a message. However, Rack is throwing an error when we spawn a thread, and there isn't a lot of documentation on that particular error. 
+
+# Progress (Week 04/19)
+* We have successfully implemented the Thin server and Faye! :D
+* Once logged into the application, you can:
+	* talk to anyone that is currently accessing that page,
+	* search for other users, and
+	* view your own profile.
+* Right now, messages are broadcasted on 1 page. 
+	* We are working on creating 1-to-1 communication and logging messages.
+* Sending an email after successful registration works.
+* Currently working on adding other users as "friends" to an account.
