@@ -23,51 +23,28 @@ class Websocket
       #Make a Rack request with the environment to get cookies.
       request = Rack::Request.new(env)
       set_decrypt_vars(request)
-      user = @user
-      #Delete if user has more than one open socket.
-
+      user = @user.id
+      #Delete if user.id has more than one open socket.
       @@ws[user] = Faye::WebSocket.new(env)
-      puts
-      puts
-      puts "******************"
-       @@ws.each do |user, socket|
-         puts "#{user} #{socket}"
-       end
-      puts @@ws[user]
-      puts "******************"
-      puts
-      puts
-      @talking.each do |friend|
-        formatted_friend = friend.gsub!(/[^0-9A-Za-z]/, '').to_i
-        @@talking_to[user] = formatted_friend
-      end #do
+      #Figure out whose socket we're talking to.
+      set_friends(user)
 
+      #Actions if recieve a message:
       @@ws[user].on :message do |event|
-        prepended_data = "#{user.first_name} #{user.last_name}" + ": #{event.data}"
+        prepended_data = "#{User.find(user).first_name} #{User.find(user).last_name}" + ": #{event.data}"
         #Send data to all friends in conversation.
-
-        @talking.each do |friend|
-          #Stack overflow for getting rid of hidden characters.
-          #http://stackoverflow.com/questions/21446369/deleting-all-special-characters-from-a-string-ruby
-          formatted_friend = friend.gsub!(/[^0-9A-Za-z]/, '').to_i
-          if formatted_friend == 0
-            formatted_friend = @@talking_to[user]
-          else
-            @@talking_to[user] = formatted_friend
-          end
-          @@ws[User.find(formatted_friend.to_i)].send(prepended_data) if @@ws[User.find(formatted_friend.to_i)]
-        end #do
+        send_msg_friend(user, prepended_data)
         #And send the data to yourself.
-        @@ws[user].send(prepended_data)
+        @@ws[user].send(prepended_data) if @@ws && @@ws[user]
       end
 
-      @@ws[@user].on :close do |event|
+      @@ws[user].on :close do |event|
         p [:close, event.code, event.reason]
         @@ws.delete(@user)
       end
 
       # Return async Rack response
-      @@ws[@user].rack_response
+      @@ws[user].rack_response
 
     else
       #[200, {'Content-Type' => 'text/plain'}, ['Hello']]
@@ -103,6 +80,32 @@ class Websocket
     key = MercuriChat::Application.secrets.secret_key_base
     decrypt_session_cookie(cookie, key)
   end
+
+  def set_friends(user)
+  @talking.each do |friend|
+    formatted_friend = friend.gsub!(/[^0-9A-Za-z]/, '').to_i
+    puts "FRIEND: #{formatted_friend}"
+    @@talking_to[user] = formatted_friend
+    puts "INIT: #{User.find(user).last_name} is talking to #{User.find(@@talking_to[user]).last_name}."
+  end #do
+  end #def
+
+  def send_msg_friend(user, prepended_data)
+  @talking.each do |friend|
+    #Stack overflow for getting rid of hidden characters.
+    #http://stackoverflow.com/questions/21446369/deleting-all-special-characters-from-a-string-ruby
+
+
+    #formatted_friend = friend.gsub!(/[^0-9A-Za-z]/, '').to_i
+    #if formatted_friend == 0
+      formatted_friend = @@talking_to[user]
+    #else
+    #  @@talking_to[user] = formatted_friend
+    #end
+    @@ws[formatted_friend].send(prepended_data) if @@ws[formatted_friend]  
+  end #do
+  end #def
+
 end #class
 
 
