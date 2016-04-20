@@ -15,14 +15,12 @@ gem 'coffee-rails', '~> 4.1.0'
 
 #gem 'rack-cache', :require => 'rack/cache'
 
-
 # Installing Devise:
 gem 'devise'
 
 # Installing Bootstrap gems:
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
-
 
 # Installing letter_opener gem:
 gem "letter_opener", :group => :development
