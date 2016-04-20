@@ -24,10 +24,25 @@ class Websocket
       request = Rack::Request.new(env)
       set_decrypt_vars(request)
       user = @user
+      #Delete if user has more than one open socket.
 
-        @@ws[user] = Faye::WebSocket.new(env)
+      @@ws[user] = Faye::WebSocket.new(env)
+      puts
+      puts
+      puts "******************"
+       @@ws.each do |user, socket|
+         puts "#{user} #{socket}"
+       end
+      puts @@ws[user]
+      puts "******************"
+      puts
+      puts
+      @talking.each do |friend|
+        formatted_friend = friend.gsub!(/[^0-9A-Za-z]/, '').to_i
+        @@talking_to[user] = formatted_friend
+      end #do
+
       @@ws[user].on :message do |event|
-<<<<<<< HEAD
         prepended_data = "#{user.first_name} #{user.last_name}" + ": #{event.data}"
         #Send data to all friends in conversation.
 
@@ -44,17 +59,6 @@ class Websocket
         end #do
         #And send the data to yourself.
         @@ws[user].send(prepended_data)
-        #@@ws.each do |name, socket|
-        #  socket.send(prepended_data)
-        #end
-=======
-        prepended_data = user.first_name +  " " + user.last_name + ": #{event.data}"
-        @@ws.each do |name, socket|
-          puts socket
-          puts @user
-          socket.send(prepended_data)
-        end
->>>>>>> f0b8f8975041488fd98c28cdd866c27573d1cac3
       end
 
       @@ws[@user].on :close do |event|
@@ -65,10 +69,8 @@ class Websocket
       # Return async Rack response
       @@ws[@user].rack_response
 
-      #t = Thread.new{chat_thread(@user, env)}
-      #t.join
-
     else
+      #[200, {'Content-Type' => 'text/plain'}, ['Hello']]
       @app.call(env)
     end
   end

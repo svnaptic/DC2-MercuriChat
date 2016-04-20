@@ -18,6 +18,4 @@ class ChatController < ApplicationController
     gon.users = userlist
   end
 
-
-
 end #class

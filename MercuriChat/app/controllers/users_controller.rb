@@ -17,9 +17,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-<<<<<<< HEAD
     @user = User.where(first_name: params[:find_friend].split[0], last_name: params[:find_friend].split[1]).take if params[:find_friend]
-    @user = User.find(params[:id]) if !@user
+    @user = User.find(params[:id]) if !params[:find_friend]
 
     if request.xhr?
       me = User.find(session[:user])
@@ -32,10 +31,6 @@ class UsersController < ApplicationController
 
       end
     end
-=======
-    #@user = User.where(first_name: params[:find_friend].split[0], last_name: params[:find_friend].split[1]).take
-    @user = User.find(params[:id])
->>>>>>> f0b8f8975041488fd98c28cdd866c27573d1cac3
   end
 
   # GET /users/new
@@ -56,7 +51,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         # Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html#sending-emails
-        UserMailer.welcome_email(@user).deliver_later
+        #UserMailer.welcome_email(@user).deliver_later
 
         format.html { redirect_to dashboard_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: dashboard_path }
@@ -151,6 +146,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :avatar, :email, :password_hash, :password_salt)
+    params.require(:user).permit(:first_name, :last_name, :email, :password_hash, :password_salt)
   end
 end
