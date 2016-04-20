@@ -4,7 +4,10 @@
 // Start a new WebSocket:
 //var w = new WebSocketRails('localhost:3000/websocket')
 url = "ws://localhost:3000/dashboard";
-var w = new WebSocket(url);
+if(!w) {
+    var w = new WebSocket(url);
+    console.log("Client creating new websocket.")
+}
 
 // The following WebSocket events are referenced from the following sources--
 // Referenced from: https://www.youtube.com/watch?v=WDowDtfWiGQ 
@@ -20,7 +23,7 @@ w.onopen = function() {
 	// w.send(str);
 	// console.log("w.onopen: <" + str + "> was sent!");
 }
-
+  
 // WebSocket Event: message
 // Description: occurs when the client receives data from server.
 w.onmessage = function(e) {
@@ -45,6 +48,7 @@ w.onerror = function(e) {
 // WebSocket Event: close
 // Description: occurs when the WebSocket connection is closed.
 w.onclose = function(e) {
+    console.log(w)
 	console.log("onclose: WebSocket has been closed!");
 }
 

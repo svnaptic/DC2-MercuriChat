@@ -14,15 +14,23 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def add_friend
-
-  end
-
   # GET /users/1
   # GET /users/1.json
   def show
-    #@user = User.where(first_name: params[:find_friend].split[0], last_name: params[:find_friend].split[1]).take
-    @user = User.find(params[:id])
+    @user = User.where(first_name: params[:find_friend].split[0], last_name: params[:find_friend].split[1]).take if params[:find_friend]
+    @user = User.find(params[:id]) if !params[:find_friend]
+
+    if request.xhr?
+      me = User.find(session[:user])
+      #Create friendship unless it exists.
+      friend_request = me.friendships.build(:friend_id => @user.id) unless me.friendships.where(friend_id: @user.id).take
+      if friend_request.save
+        #Friend added message.
+      else
+        #Friend not added message.
+
+      end
+    end
   end
 
   # GET /users/new
@@ -43,7 +51,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         # Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html#sending-emails
-        UserMailer.welcome_email(@user).deliver_later
+        #UserMailer.welcome_email(@user).deliver_later
 
         format.html { redirect_to dashboard_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: dashboard_path }

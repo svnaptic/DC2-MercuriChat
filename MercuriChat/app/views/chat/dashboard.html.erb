@@ -13,7 +13,6 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<%= javascript_include_tag "dashboard" %>
 	<title>MercuriChat</title>
 	<%= javascript_include_tag "application" %>
 	<%= javascript_include_tag "dashboard" %>
@@ -69,11 +68,13 @@
 		<div class="col-md-2 sidebar">
 			<!-- Content of sidebar, i.e. friends' messages, go here! -->
 			<ul class="nav nav-sidebar">
-				<li><a href="#">Friend #1</a></li>
-				<li><a href="#">Friend #2</a></li>
-				<li><a href="#">Friend #3</a></li>
-				<li><a href="#">Friend #4</a></li>
-				<li><a href="#">Friend #5</a></li>
+        <% unless !@friendlist %>
+          <% @friendlist.each do |friend| %>
+				  <li>
+            <%= link_to "#{friend.first_name} #{friend.last_name}", conversation: "#{friend.id}" %>
+          </li>
+          <% end %>
+        <% end %>
 			</ul>
 		</div><!-- End of Friends List. -->
 

@@ -5,6 +5,7 @@
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 
+//Autocomplete for search form. 
 $(function(){
     $('#find_friend').autocomplete({
         source: gon.users

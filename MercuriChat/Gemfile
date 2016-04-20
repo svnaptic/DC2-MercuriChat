@@ -13,7 +13,14 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-#gem 'rack-cache', :require => 'rack/cache'
+#For paperclip gem syntax.
+gem 'simple_form'
+
+#Required for paperclip gem.
+gem 'aws-sdk'
+
+#For avatars/file upload
+gem "paperclip", "~> 5.0.0.beta1"
 
 # Installing Devise:
 gem 'devise'

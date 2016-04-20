@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require jquery-ui/autocomplete
 //= require dashboard
-//= require websockets
 //= require_tree ../../../vendor/assets/javascripts/.
-//= require turbolinks
+
 //= require_tree .
+

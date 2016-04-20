@@ -8,6 +8,7 @@ require 'action_controller'
 class Websocket
 
   @@ws = {}
+  @@talking_to = {}
   @online_users = {}
 
   def initialize(app)
@@ -22,42 +23,59 @@ class Websocket
       #Make a Rack request with the environment to get cookies.
       request = Rack::Request.new(env)
       set_decrypt_vars(request)
+      user = @user
+      #Delete if user has more than one open socket.
 
-      #puts @user
+      @@ws[user] = Faye::WebSocket.new(env)
+      puts
+      puts
+      puts "******************"
+       @@ws.each do |user, socket|
+         puts "#{user} #{socket}"
+       end
+      puts @@ws[user]
+      puts "******************"
+      puts
+      puts
+      @talking.each do |friend|
+        formatted_friend = friend.gsub!(/[^0-9A-Za-z]/, '').to_i
+        @@talking_to[user] = formatted_friend
+      end #do
 
-      #Make new websocket.
-    #t = Thread.new {
-
-   # }
-       user = @user
-
-        @@ws[user] = Faye::WebSocket.new(env)
       @@ws[user].on :message do |event|
-        prepended_data = user.first_name +  " " + user.last_name + ": #{event.data}"
-        @@ws.each do |name, socket|
-          puts socket
-          puts @user
-          socket.send(prepended_data)
-        end
+        prepended_data = "#{user.first_name} #{user.last_name}" + ": #{event.data}"
+        #Send data to all friends in conversation.
+
+        @talking.each do |friend|
+          #Stack overflow for getting rid of hidden characters.
+          #http://stackoverflow.com/questions/21446369/deleting-all-special-characters-from-a-string-ruby
+          formatted_friend = friend.gsub!(/[^0-9A-Za-z]/, '').to_i
+          if formatted_friend == 0
+            formatted_friend = @@talking_to[user]
+          else
+            @@talking_to[user] = formatted_friend
+          end
+          @@ws[User.find(formatted_friend.to_i)].send(prepended_data) if @@ws[User.find(formatted_friend.to_i)]
+        end #do
+        #And send the data to yourself.
+        @@ws[user].send(prepended_data)
       end
 
       @@ws[@user].on :close do |event|
         p [:close, event.code, event.reason]
-        ws = nil
+        @@ws.delete(@user)
       end
-[]
+
       # Return async Rack response
       @@ws[@user].rack_response
 
-      #t = Thread.new{chat_thread(@user, env)}
-      #t.join
-
     else
+      #[200, {'Content-Type' => 'text/plain'}, ['Hello']]
       @app.call(env)
     end
   end
 
-
+  #Rails cookie decryption referenced from: https://gist.github.com/profh/e36e5dd0bec124fef04c
   def decrypt_session_cookie(cookie, key)
     cookie = CGI::unescape(cookie)
 
@@ -71,8 +89,11 @@ class Websocket
     sign_secret = key_generator.generate_key(signed_salt)
 
     encryptor = ActiveSupport::MessageEncryptor.new(secret, sign_secret, serializer: ActiveSupport::MessageEncryptor::NullSerializer)
-    #puts Marshal.load(encryptor.decrypt_and_verify(cookie))
-    user = encryptor.decrypt_and_verify(cookie).split("user")[1].split(':')[1].split('}')[0]
+    puts encryptor.decrypt_and_verify(cookie)
+    decrypted_cookie = encryptor.decrypt_and_verify(cookie)
+    user = decrypted_cookie.split("user")[1].split(':')[1].split(',')[0]
+    conversation = decrypted_cookie.split("conversation")[1].split(':')[1].split('}')[0]
+    @talking = conversation.split('*') if conversation
     @user = User.find(user)
   end
 
