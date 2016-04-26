@@ -58,21 +58,10 @@ gem 'gon'
 gem 'jquery-ui-rails'
 
 # Faye and Thin in Rails:
-gem 'faye-rails'
+gem 'faye-rails', '~> 2.0.0'
 gem 'thin'
 
-# Referenced from: http://www.sitepoint.com/deploy-your-rails-app-to-aws/
-gem 'figaro'
-gem 'puma'
-group :development do
-  gem 'capistrano'
-  gem 'capistrano3-puma'
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano-rvm'
-end
-
-gem 'capistrano-passenger'
+gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
