@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
   # Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html
-  default from: 'user_name@example.com'
+  default from: 'mercurichat.sp16@gmail.com'
 
   def welcome_email(user)
   	# Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html

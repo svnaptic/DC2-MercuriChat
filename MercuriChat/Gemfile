@@ -29,7 +29,6 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
-
 # Installing letter_opener gem:
 gem "letter_opener", :group => :development
 
@@ -63,6 +62,19 @@ gem 'jquery-ui-rails'
 # Faye and Thin in Rails:
 gem 'faye-rails'
 gem 'thin'
+
+# Referenced from: http://www.sitepoint.com/deploy-your-rails-app-to-aws/
+gem 'figaro'
+gem 'puma'
+group :development do
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rvm'
+end
+
+gem 'capistrano-passenger'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
