@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+    File:   http://www.cs.uml.edu/~eseto/Data_Communications_II/show.html.erb
+    91.414 Data Communications II Project (MercuriChat)
+    Emily Seto, Undergraduate Computer Science student at UMass Lowell, emily_seto@student.uml.edu
+    Copyright (c) 2016 by Emily W. Seto. All rights reserved. May be freely copied or excerpted for
+        educational purposes with credit to the author.
+    The objective of this first assignment is to create an index for upcoming assignments in GUI.
+    Updated by EWS on April 17th, 2016 at 3:26 AM
+-->
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<%= javascript_include_tag "dashboard" %>
+	<title>MercuriChat</title>
+</head>
+<body>
+<!-- Navigation bar information from: http://getbootstrap.com/components/#navbar. -->
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container-fluid">
+		<!-- Brand and toggle get grouped together for better mobile display. -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation.</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">MercuriChat</a>
+		</div>
+<%= image_tag @user.avatar.url(:medium) if @user.avatar %>
+
+
+<p>
+  <strong>First Name:</strong>
+
+  <% puts @user %>
+
+  <%= @user.first_name %>
+</p>
+			<!-- Will eventually allow users to search for other people using the client: -->
+			<!--form class="navbar-form navbar-right" action=" " method=""-->
+			<%= form_tag({controller: "users", action: "show", id: "id"}, method: "get", class: "navbar-form navbar-right") do %>
+			<div class="searchbox">
+        	<%= text_field_tag "find_friend", nil, class: "form-control", :placeholder => "Search..." %>
+		    </div>
+			<% end %>
+			<!--/form-->
+		</div>
+	</div>
+</nav><!-- End of navigation bar. -->
+
+<!-- Beginning of cover page. -->
+<div class="container-fluid">
+	<div class="row">
+		<!-- Beginning of profile here: -->
+		<div class="col-md-6 col-md-offset-3 profile">
+			<div class="row">
+				<div class="col-md-12" id="usr-profile">
+					<center>
+						<img src="#" class="img-circle" />
+						<h1>
+							<strong>
+								<%= @user.first_name %>
+								<%= @user.last_name %>
+							</strong>
+						</h1>
+						<p>
+							<strong>Email Address:</strong>
+							<%= @user.email %>
+						</p>
+						<%#= button_to "Add Friend", { action: "add_friend", friend: @user.id} %>
+
+<!--Avatar code straight from official documentation. -->
+
+Upload Avatar:
+<%= simple_form_for @user, method: "get", url: users_path do |form| %>
+    <%= form.input :avatar, as: :file %>
+    <%= form.submit "Upload Avatar" %>
+<% end %>
+
+<%= button_to "Add Friend", user_path(@user.id), method: "get", remote: true %>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+						<%= link_to 'Edit', edit_user_path(@user) %> |
+						<%= link_to 'Back', users_path %>
+					</center>
+				</div>
+			</div>
+		</div><!-- End of "Profile" panel here. -->
+	</div>
+</div>
+
+</body>
+</html>
+
+<!--<p id="notice"><%= notice %></p>-->
