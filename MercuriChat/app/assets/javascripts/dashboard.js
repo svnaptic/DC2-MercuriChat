@@ -1,16 +1,20 @@
 // Code for general purpose Dashboard layout:
 // Start a new WebSocket:
 
-//= require jquery
-//= require jquery_ujs
 //= require jquery-ui/autocomplete
+//= require jquery-ui/dialog
 
 //Autocomplete for search form. 
 $(function(){
     $('#find_friend').autocomplete({
         source: gon.users
-    });
+    }); 
 });
+
+function display_groupwin() {
+    document.getElementById("newgroup").style.display = "block"
+    $( "#newgroup" ).dialog();
+};
   
 //Submitting a form with no submit button referenced from
 //http://stackoverflow.com/questions/699065/submitting-a-form-on-enter-with-jquery

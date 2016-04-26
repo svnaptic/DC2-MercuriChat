@@ -27,20 +27,16 @@ w.onopen = function() {
 // WebSocket Event: message
 // Description: occurs when the client receives data from server.
 w.onmessage = function(e) {
-    console.log("w.onmessage:" + e.data.toString());
-    if (e.data.toString())
-    // Creating new variables for alert msgs:
-        var alrtstr1 = "<div class=\"alert alert-msg\" role=\"alert\">";
-    var alrtstr2 = "</div>";
-    // Printing out time and date:
-    var d = new Date();
-    var tmanddat = "<p class=\"tmdt\">" + d + "</p>";
-    msg_channel = e.data.toString().split(/#&[^&]/)[0];
-    if (gon.channel + " " == msg_channel) {
-        displayMessage(alrtstr1 + tmanddat + e.data.toString().split(/#&[^&]/)[1] + alrtstr2);
-    }
-    console.log("My Channel: " + gon.channel)
-    console.log("Incoming Channel: " + msg_channel)    
+	console.log("w.onmessage:" + e.data.toString());
+	// Creating new variables for alert msgs:
+	var alrtstr1 = "<div class=\"alert alert-msg\" role=\"alert\">";
+	var alrtstr2 = "</div>";
+
+	// Printing out time and date:
+	var d = new Date();
+	var tmanddat = "<p class=\"tmdt\">" + d + "</p>";
+
+	displayMessage(alrtstr1 + tmanddat + e.data.toString() + alrtstr2);
 }
 
 // WebSocket Event: error

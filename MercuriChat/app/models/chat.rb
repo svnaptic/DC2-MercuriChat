@@ -1,3 +1,3 @@
 class Chat < ActiveRecord::Base
-  belongs_to :user
+  has_many :users, :through => chatlog_entries
 end

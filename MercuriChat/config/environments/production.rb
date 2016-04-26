@@ -76,6 +76,10 @@ Rails.application.configure do
 
   config.middleware.delete(Rack::Lock)
 
+  config.assets.precompile += %w( jquery.multiselect.js )
+  config.assets.precompile += %w( jquery.multiselect.css )
+
+
   #config.cache_store = :mem_cache_store
 
 

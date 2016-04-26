@@ -28,7 +28,6 @@ class UsersController < ApplicationController
         #Friend added message.
       else
         #Friend not added message.
-
       end
     end
   end
