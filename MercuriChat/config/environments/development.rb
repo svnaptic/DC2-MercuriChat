@@ -42,22 +42,4 @@ Rails.application.configure do
 
   config.middleware.delete Rack::Lock
 
-  # Configuring Action Mailer (general):
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = { from: 'mercurichat.sp16@gmail.com'}
-
-  # Configuring Action Mailer for Gmail:
-  # Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:        'smtp.gmail.com',
-    port:           587,
-    domain:         'localhost:3000',
-    user_name:      'mercurichat.sp16@gmail.com',
-    password:       'ChatMercuri2016',
-    authentication: 'plain',
-    enable_starttls_auto: true }
-
 end

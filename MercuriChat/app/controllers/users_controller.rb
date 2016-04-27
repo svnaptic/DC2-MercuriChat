@@ -52,7 +52,7 @@ class UsersController < ApplicationController
       if @user.save
         # Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html#sending-emails
         # Delivers "welcome email" to newly registered users:
-        UserMailer.welcome_email(@user).deliver_later
+        # UserMailer.welcome_email(@user).deliver_later
 
         # Initializes the session's user with @user.id:
         log_in @user

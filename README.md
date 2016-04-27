@@ -51,3 +51,19 @@ In order to make your browser compatible with HTML5 WebSockets, we downloaded py
 	* choose a friend for 1-to-1 chat.
 	* We are working on creating an interface for group chats and logging messages.
 * Sending an email after successful registration works.
+
+# Progress (Week 04/26)
+* Created different chat channels for users to interact with each other.
+* Made changes to chat controller, so that:
+	* Users are given their own sessions.
+	* Users are initialized with an empty "friend list".
+	* Users are initialized with conversations.
+	* Users can create new group chats, and 
+	* Users can search for other users in our database.
+* Updates the database for the number of users in a certain chat channel. 
+* Modified show.html.erb so that different users have different levels of access. For example:
+	* If a user is accessing his/her own profile page, he/she may edit their profiles.
+	* If a user is accessing someone else's profile page, he/she may add this user as a friend (unless they are already friends with this other user).
+* Fixed "Sign Out" button. (Nav dropdown wasn't working, so... we improvised).
+* Users can now access their previous chatlogs.
+* Unread messages are indicated now.
