@@ -3,7 +3,7 @@
 
 The goal of this project is to create a simple web client that uses TCP/WebSockets to connect to a chat server using HTML5, HTML5 WebSockets, CSS, JavaScript, and Ruby on Rails.
 
-## Project Design:
+## Project Design
 
 We used draw.io to draw the diagrams explaining our project design.
 
@@ -22,7 +22,7 @@ The above indicates the initial functionalities a user has when he or she first 
 
 The diagram above shows the design flow once the user has gained access to their dashboards.
 
-## File Structure (from FILES.md):
+## File Structure (from FILES.md)
 <ul>
   <li><b>MercuriChat/</b></li>
   <ul>
