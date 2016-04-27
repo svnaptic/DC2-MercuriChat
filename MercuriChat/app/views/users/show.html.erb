@@ -39,6 +39,7 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li><%= link_to "Dashboard", {controller: "chat", action: "dashboard", id: session[:user]}, method: "get" %></li>
         	<li><%= link_to "My Profile", {controller: "users", action: "show", id: session[:user]}, method: "get" %></li>
+        	<li><%= link_to "Sign Out", {controller: "users", action: "sign_out"} %></li>
         	<li class="<%= 'active' if params[:controller] == 'dashboard_controller' %>"><a href="help">?</a></li>
       	</ul>
 			<!-- Will eventually allow users to search for other people using the client: -->

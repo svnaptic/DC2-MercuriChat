@@ -44,8 +44,8 @@
       <!-- Referenced from: https://getbootstrap.com/examples/dashboard/ -->
       <ul class="nav navbar-nav navbar-right">
         <li class="<%= 'active' if params[:controller] == 'dashboard_controller' %>"><a href="dashboard">Home</a></li>
-        <li><%= link_to "My Profile", {controller: "users", action: "show", id: session[:user]}, method: "get" %></li>
-        <li><%= link_to "Sign Out", {controller: "users", action: "sign_out", id: session[:user]}, method: "get" %></li>
+        <li><%= link_to "My Profile", {controller: "users", action: "show", id: session[:user]} %></li>
+        <li><%= link_to "Sign Out", {controller: "users", action: "sign_out"} %></li>
         <li class="<%= 'active' if params[:controller] == 'dashboard_controller' %>"><a href="help">?</a></li>
       </ul>
 

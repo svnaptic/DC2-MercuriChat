@@ -119,7 +119,7 @@ class UsersController < ApplicationController
   # Logs out the current user.
   def sign_out
     session[:user] = nil
-    redirect_to sign_out_path
+    redirect_to index_path
   end
 
   # 
