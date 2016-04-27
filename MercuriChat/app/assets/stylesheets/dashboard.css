@@ -1,0 +1,14 @@
+#newgroup{
+    display: none
+}
+
+.add-group-chat {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.tmdt {
+    font-weight: bold;
+    font-size: 10px;
+}

@@ -19,10 +19,29 @@ h1 {
     text-transform: capitalize;
 }
 
+h2 {
+    text-align: center;
+    font-weight: 300;
+}
+
+h2#signature {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 56px;
+}
+
 li.nav-dropdown-active {
     background-color: #ECF0F1;
     color: #8E44AD;
 }
+
+p.large {
+    font-size: 22px;
+}
+
+ul.large {
+    font-size: 20px;
+}
+
 
 /* Referenced from: https://getbootstrap.com/examples/dashboard/dashboard.css */
 .navbar-fixed-top {
@@ -61,10 +80,6 @@ li.nav-dropdown-active {
 .navbar-sidebar > li {
     padding-right: 20px;
     padding-left: 20px;
-}
-
-.tmdt {
-    font-weight: bold;
 }
 
 /* Edits for msg-history and msg-send: */

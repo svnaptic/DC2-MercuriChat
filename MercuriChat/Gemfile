@@ -25,6 +25,9 @@ gem "paperclip", "~> 5.0.0.beta1"
 # Installing Devise:
 gem 'devise'
 
+# Installing Action_Mailer gem:
+gem 'actionmailer'
+
 # Installing Bootstrap gems:
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
@@ -46,8 +49,8 @@ gem 'high_voltage'
 
 gem 'connection_pool'
 
+gem 'rake'
 #gem 'memcachier'
-
 gem 'faye-websocket'
 
 # Use ActiveModel has_secure_password
@@ -57,11 +60,12 @@ gem 'gon'
 
 gem 'jquery-ui-rails'
 
+
+
 # Faye and Thin in Rails:
 gem 'faye-rails', '~> 2.0.0'
 gem 'thin'
-
-gem 'passenger', '>= 5.0.25', require: 'phusion_passenger/rack_handler'
+gem 'faye-redis'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

@@ -1,0 +1,1 @@
+        <!-- <li><%= link_to "Log Out", {controller: "users", action: "sign_out", id: session[:user]}, method: "delete" %></li>-->

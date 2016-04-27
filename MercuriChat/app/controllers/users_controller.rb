@@ -28,7 +28,6 @@ class UsersController < ApplicationController
         #Friend added message.
       else
         #Friend not added message.
-
       end
     end
   end
@@ -45,21 +44,27 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    # Creates a new user:
     @user = User.new(user_params)
     @user.password = params[:password][:password]
 
     respond_to do |format|
       if @user.save
         # Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html#sending-emails
-        #UserMailer.welcome_email(@user).deliver_later
+        # Delivers "welcome email" to newly registered users:
+        UserMailer.welcome_email(@user).deliver_later
 
+        # Initializes the session's user with @user.id:
+        log_in @user
+
+        # Redirects to the user's dashboard:
         format.html { redirect_to dashboard_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: dashboard_path }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
         # Referenced from: https://www.railstutorial.org/book/log_in_log_out
-        # flash.now[:danger] = 'Invalid email/password combination'
+        flash.now[:danger] = 'Invalid email/password combination'
         # render 'new'
       end
     end
@@ -95,33 +100,76 @@ class UsersController < ApplicationController
 
   def sign_in
     check_login(params) if params[:inputUN]
+    # For debugging purposes:
+    puts
+    puts
+    puts "*******************"
+    puts "In sign_in: #{params}"
+    puts "*******************"
+    puts
+  end
+
+  # Referenced from: https://www.railstutorial.org/book/log_in_log_out
+  # Sets the session's user to the user passed to it:
+  def log_in(user)
+    session[:user] = user.id
   end
 
   # Referenced from: https://www.railstutorial.org/book/log_in_log_out
   # Logs out the current user.
   def sign_out
     session[:user] = nil
-    redirect_to index_path
+    redirect_to sign_out_path
   end
 
+  # 
+  def is_zero?(index)
+    if index == 0
+      return true
+    else 
+      return false
+    end
+  end
+
+  # Referenced from: https://www.railstutorial.org/book/log_in_log_out
+  # Checks to see if the user is currently logged on.
+  def signed_in? (user)
+    me = User.find(session[:user])
+
+    # For debugging:
+    puts
+    puts
+    puts "****************************"
+    puts "Me:   #{me}"
+    puts "User: #{user}"
+    puts "****************************"
+    puts
+    puts
+
+    if me != user
+      return false
+    else
+      return true
+    end
+  end
+
+  # Validates if a user has signed in:
   def check_login(params)
+    # For debugging purposes:
+    puts
+    puts
+    puts "*******************"
+    puts "#{params}"
+    puts "*******************"
+    puts
+
     @user = User.where(email: params[:inputUN]).take
     if @user && @user.password && @user.password == params[:inputPW]
-#<<<<<<< HEAD
       #Set their session variable to their id. Session variables provide memory to the stateless
       #web. At any time the clients browser accesses session[user], it obtains his public key in
       #the database, a unique identifier which allows the browser to always know who it is.
-      session[:user] = @user.id
+      log_in @user
       redirect_to dashboard_path
-    #else
-    #  flash[:error] = "Incorrect username or password. Please try again."
-    #end #if/else
-#=======
-      #Set their session variable to their id
-      #session[user] = @user.id
-      # log_in user
-      #redirect_to @user
-      # redirect_to @current_user
     else
       puts "failed"
       puts params
@@ -135,7 +183,6 @@ class UsersController < ApplicationController
       # puts @user.password == params[:inputPW] if @user.password && params[:inputPW]
       session[:error] = "Incorrect username or password. Please try again."
     end
-#>>>>>>> ab15b209eadb2957765153b79dd60761c4970c8c
   end
 
   private

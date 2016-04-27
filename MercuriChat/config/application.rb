@@ -27,7 +27,7 @@ module MercuriChat
     config.middleware.delete Rack::Lock
 
     # Config Faye on Rails:
-     config.middleware.use Faye::RackAdapter, :mount => '/faye', :timeout => 50
+     config.middleware.use Faye::RackAdapter, :mount => '/faye', :timeout => 300
 
     # Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html
     config.action_mailer.default_url_options = { host: 'localhost:3000'}
@@ -40,6 +40,7 @@ module MercuriChat
 
     config.action_controller.perform_caching = false
 
-
+    #Referenced from http://danilenko.org/2012/7/6/rails_timezones/
+    config.time_zone = 'EST'
   end
 end

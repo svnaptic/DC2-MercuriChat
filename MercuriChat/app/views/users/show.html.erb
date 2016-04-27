@@ -15,6 +15,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<%= javascript_include_tag "dashboard" %>
 	<title>MercuriChat</title>
+
+	<!-- Linking stylesheets and scripts: -->
+	<%= stylesheet_link_tag "index" %>
+  	<%= javascript_include_tag "application" %>
+  	<%= javascript_include_tag "dashboard" %>
+
 </head>
 <body>
 <!-- Navigation bar information from: http://getbootstrap.com/components/#navbar. -->
@@ -30,16 +36,11 @@
 			</button>
 			<a class="navbar-brand" href="#">MercuriChat</a>
 		</div>
-<%= image_tag @user.avatar.url(:medium) if @user.avatar %>
-
-
-<p>
-  <strong>First Name:</strong>
-
-  <% puts @user %>
-
-  <%= @user.first_name %>
-</p>
+		<ul class="nav navbar-nav navbar-right">
+			<li><%= link_to "Dashboard", {controller: "chat", action: "dashboard", id: session[:user]}, method: "get" %></li>
+        	<li><%= link_to "My Profile", {controller: "users", action: "show", id: session[:user]}, method: "get" %></li>
+        	<li class="<%= 'active' if params[:controller] == 'dashboard_controller' %>"><a href="help">?</a></li>
+      	</ul>
 			<!-- Will eventually allow users to search for other people using the client: -->
 			<!--form class="navbar-form navbar-right" action=" " method=""-->
 			<%= form_tag({controller: "users", action: "show", id: "id"}, method: "get", class: "navbar-form navbar-right") do %>
@@ -67,25 +68,28 @@
 								<%= @user.last_name %>
 							</strong>
 						</h1>
-						<p>
+						<p class="large">
 							<strong>Email Address:</strong>
 							<%= @user.email %>
 						</p>
-						<%#= button_to "Add Friend", { action: "add_friend", friend: @user.id} %>
 
-<!--Avatar code straight from official documentation. -->
+<!-- Checks of user is signed in for certain actions: -->
+<% if signed_in?(@user) %>
+	<!--Avatar code straight from official documentation. -->
+	Upload Avatar:
+	<%= simple_form_for @user, method: "get", url: users_path do |form| %>
+    	<%= form.input :avatar, as: :file %>
+    	<%= form.submit "Upload Avatar" %>
+	<% end %>
 
-Upload Avatar:
-<%= simple_form_for @user, method: "get", url: users_path do |form| %>
-    <%= form.input :avatar, as: :file %>
-    <%= form.submit "Upload Avatar" %>
-<% end %>
-
-<%= button_to "Add Friend", user_path(@user.id), method: "get", remote: true %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
-						<%= link_to 'Edit', edit_user_path(@user) %> |
-						<%= link_to 'Back', users_path %>
+<!-- Else, allow the option to add a friend. 
+	It will return NIL if the friend has already been added. -->
+<% else %>
+<%= button_to "Add Friend", user_path(@user.id), method: "get", remote: true %>
+<% end %><!-- End of if-else block. -->
+
 					</center>
 				</div>
 			</div>
