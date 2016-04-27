@@ -51,7 +51,7 @@ class UsersController < ApplicationController
       if @user.save
         # Referenced from: http://guides.rubyonrails.org/action_mailer_basics.html#sending-emails
         #UserMailer.welcome_email(@user).deliver_later
-
+        session[:user] = @user.id
         format.html { redirect_to dashboard_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: dashboard_path }
       else

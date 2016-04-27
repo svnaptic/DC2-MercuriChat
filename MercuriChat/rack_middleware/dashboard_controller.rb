@@ -30,7 +30,6 @@ class Websocket
       request = Rack::Request.new(env)
       set_decrypt_vars(request)
       user = @user.id
-      #TODO: Delete if user.id has more than one open socket, like if he opens 2 browsers.
       @@ws[user] = Faye::WebSocket.new(env)
       #Figure out whose socket we're talking to.
       set_friends(user)
@@ -80,7 +79,8 @@ class Websocket
     puts encryptor.decrypt_and_verify(cookie)
     decrypted_cookie = encryptor.decrypt_and_verify(cookie)
     user = decrypted_cookie.split("user")[1].split(':')[1].split(',')[0]
-    conversation = decrypted_cookie.split("conversation")[1].split(':')[1].split('}')[0]
+    conversation = decrypted_cookie.split("conversation")[1].split(':')[1].split('}')[0] if decrypted_cookie.split("conversation")[1]
+    @talking = []
     @talking = conversation.split('*') if conversation
     @user = User.find(user)
     @@channels[@user.id] = decrypted_cookie.split("channel")[1].split(':')[1].split(',')[0].split('}')[0].gsub!(/[" ']/, '')

@@ -4,14 +4,31 @@ require 'faye/websocket'
 class ChatController < ApplicationController
 
   def dashboard
+    @unread = []
     me = User.find(session[:user])
     create_groupchat(me) if params["group_name"]
     init_friends(me)
     init_conversation(me)
     init_groupchats(me)
     init_friendsearch
-
+    me.chatlog_entries.where(read: false ).each do |unread|
+      @unread.push(Chat.find(unread.chat_id).channel_name)
+    end #do
+    @unread = @unread.uniq
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end #dashboard
+
+  def loadmore
+    gon.start += 10 if gon.start
+    gon.start = 10 if !gon.start
+    get_chats(User.find(session[:user]), gon.start, gon.start + 10)
+    respond_to do |format|
+      format.js and return
+    end
+  end
 
   ###############################################################################
   #  init_friends takes as a parameter the current user's ID  and initializes   #
@@ -43,6 +60,15 @@ class ChatController < ApplicationController
     end #if
     gon.channel = session["channel"]
     create_gon_chatlog(me)
+    #Fix chatlog entries to read if you've clicked on that chat.
+    records = me.chats.where(channel_name: session["channel"])
+    records.each do |record|
+      record.chatlog_entries.where(read: false).each do |entry|
+        puts "*** #{entry} ***"
+        entry.read = true
+        entry.save
+        end #do
+    end #do
   end # def
   ###############################################################################
   ###############################################################################
@@ -73,7 +99,6 @@ class ChatController < ApplicationController
     n = 10
     chats = me.chats.where(channel_name: session["channel"]).to_a.sort_by{|a| a.created_at }
     n = chats.size if chats.size < 11
-    puts "n = #{n}"
     for i in 0..n
       gon.chatlog[i] = chats[i].conversation if chats[i]
       gon.chatlogdate[i] = chats[i].created_at.httpdate if chats[i]
@@ -125,5 +150,15 @@ class ChatController < ApplicationController
       end #do
     end #if/else
   end #groupchat
-
+##########################################################################
+  def get_chats(me, start, fin)
+    gon.watch.chatlog = 5
+    gon.watch.chatlogdate = []
+    chats = me.chats.where(channel_name: session["channel"]).to_a.sort_by{|a| a.created_at }
+    fin = chats.size if chats.size < fin
+    for i in start..fin
+      #gon.watch.chatlog[i - start] = chats[i].conversation if chats && chats[i]
+      #gon.watch.chatlogdate[i - start] = chats[i].created_at.httpdate if chats[i]
+    end #for
+  end #def
 end #class

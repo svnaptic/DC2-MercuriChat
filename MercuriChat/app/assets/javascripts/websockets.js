@@ -39,6 +39,15 @@ w.onmessage = function(e) {
     if (gon.channel + " " == msg_channel) {
         displayMessage(alrtstr1 + tmanddat + e.data.toString().split(/#&[^&]/)[1] + alrtstr2);
     }
+    else{
+        //Calling Ruby using Ajax referenced from: http://stackoverflow.com/questions/30489571/how-to-call-ruby-method-on-server-from-javascript
+        $.ajax({
+            type: "GET",
+            url: '/dashboard',
+            data: {incoming_channel: msg_channel},
+            dataType: "script"
+        });
+    }
     console.log("My Channel: " + gon.channel)
     console.log("Incoming Channel: " + msg_channel)
 }
@@ -82,16 +91,37 @@ function displayMessage(s) {
 	$('#inputMessage').focus();
 }
 
-$(document).ready ( function(){
+$(document).ready(function(){
     var i = 0
     var alrtstr1 = "<div class=\"alert alert-msg\" role=\"alert\">";
-    var alrtstr2 = "</div>";
+    var alrtstr2 = "<div>";
 
-    while( i < gon.chatlog.length) {
-        d = gon.chatlogdate[i]   
+    while(i < gon.chatlog.length) {
+        d = gon.chatlogdate[i];
         var tmanddat = "<p class=\"tmdt\">" + d + "</p>";
         displayMessage(alrtstr1 + tmanddat + gon.chatlog[i] + alrtstr2);
         i += 1;
     }
-
+    gon.chatlog = []
 });
+
+
+function showprev(){
+    $.ajax({
+        type: "GET",
+        url: '/loadmore',    
+        data: {msg_index: "ok"},
+        dataType: "script"
+    });
+
+    var i = 0
+    var alrtstr1 = "<div class=\"alert alert-msg\" role=\"alert\">";
+    var alrtstr2 = "<div>";
+
+    while(i < gon.chatlog.length) {
+        d = gon.chatlogdate[i];
+        var tmanddat = "<p class=\"tmdt\">" + d + "</p>";
+        displayMessage(alrtstr1 + tmanddat + gon.chatlog[i] + alrtstr2);
+        i += 1;
+    }
+}

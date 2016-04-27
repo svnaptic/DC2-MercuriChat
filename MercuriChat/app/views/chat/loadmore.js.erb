@@ -1,0 +1,38 @@
+
+  var i = 0;
+  var alrtstr1 = "<div class=\"alert alert-msg\" role=\"alert\">";
+  var alrtstr2 = "<div>";
+  console.log("HI")
+  console.log(gon.watch('chatlog'));
+  console.log("BYE")
+  while(i < (gon.watch(chatlog)).length) {
+    d = (gon.watch(chatlogdate))[i];
+    var tmanddat = "<p class=\"tmdt\">" + d + "</p>";
+    displayMessage(alrtstr1 + tmanddat + (gon.watch(chatlog))[i] + alrtstr2);
+    i += 1;
+  }
+
+
+
+  function displayMessage(s) {
+    var logOutput = document.getElementById("msgOutput");
+    console.log("log: msgOuput has been stored. ");
+
+    // For debugging purposes:
+    //console.log("log:" + s);
+    var el = $("#msgOutput").before('<p>' + s + '</p>');
+    //console.log(el);
+
+    // Referenced from: http://stackoverflow.com/questions/270612/scroll-to-bottom-of-div
+    // Scrolls to the bottom of the  if overflowed:
+    $("#msg-history").scrollTop($("#msg-history")[0].scrollHeight);
+
+    // Referenced from: https://github.com/mathiasbynens/jquery-placeholder/issues/19
+    // Clear textarea and display placeholder:
+    $('#inputMessage').val('').blur();
+    $('#inputMessage').focus();
+  }
+
+
+
+

@@ -1,0 +1,34 @@
+<!-- Referenced from: https://getbootstrap.com/examples/dashboard/ -->
+<!-- Beginning of Friends List: -->
+<div class="col-md-2 sidebar">
+  <!-- Content of sidebar, i.e. friends' messages, go here! -->
+  <ul class="nav nav-sidebar">
+    <% unless !@friendlist %>
+        <% @friendlist.each do |friend| %>
+            <li>
+              <% if @unread.include?("#{session[:user]}" + "~" + "#{friend.id}" ) || @unread.include?("#{friend.id}" + "~" + "#{session[:user]}") %>
+              <%= link_to "* #{friend.first_name} #{friend.last_name}", conversation_single: "#{friend.id}" %>
+              <% else %>
+                  <%= link_to "#{friend.first_name} #{friend.last_name}", conversation_single: "#{friend.id}" %>
+            <% end %>
+            </li>
+        <% end %>
+    <% end %>
+    <% unless !@friendlist %>
+        <% @groupchat_list.each do |group| %>
+            <li>
+              <% if @unread.include?(group.name) %>
+                  <% puts "YES" %>
+                  <%= link_to "* #{group.name}", conversation_group: "#{group.id}" %>
+                  <% else %>
+                  <% puts "NO" %>
+              <%= link_to "#{group.name}", conversation_group: "#{group.id}" %>
+             <% end %>
+            </li>
+        <% end %>
+    <% end %>
+    <li>
+      <a href="#" onclick="display_groupwin(); return false">New Group Chat</a>
+    </li>
+  </ul>
+</div><!-- End of Friends List. -->

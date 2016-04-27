@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'team'     => 'users#team', as: :team
   get 'dashboard'     => 'chat#dashboard', as: :dashboard
   get 'group_chat' => 'chat#group_chat', as: :group_chat
+  get 'loadmore' => 'chat#loadmore', as: :loadmore  
 
   # Making edits for Devise:
   # devise_for :users
