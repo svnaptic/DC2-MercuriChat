@@ -30,7 +30,6 @@ class Websocket
       request = Rack::Request.new(env)
       set_decrypt_vars(request)
       user = @user.id
-      #TODO: Delete if user.id has more than one open socket, like if he opens 2 browsers.
       @@ws[user] = Faye::WebSocket.new(env)
       #Figure out whose socket we're talking to.
       set_friends(user)

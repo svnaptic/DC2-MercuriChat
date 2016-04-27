@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'group_chat' => 'chat#group_chat', as: :group_chat
   get 'help' => 'chat#help', as: :help
   get 'sign_out' => 'users#sign_out', as: :sign_out
+  get 'loadmore' => 'chat#loadmore', as: :loadmore  
 
   # Making edits for Devise:
   # devise_for :users

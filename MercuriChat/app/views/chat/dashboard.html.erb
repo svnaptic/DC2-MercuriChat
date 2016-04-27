@@ -65,6 +65,9 @@
 <!-- Beginning of cover page. -->
 <div class="container-fluid">
   <div class="row">
+     <div id="friendlist">
+   <%= render partial: "friendlist", locals: { friendlist: @friendlist, groupchatlist: @groupchatlist} %>
+  </div>
     <!-- Referenced from: https://getbootstrap.com/examples/dashboard/ -->
     <!-- Beginning of Friends List: -->
     <div class="col-md-2 sidebar">
@@ -125,13 +128,14 @@
         </div><!-- End of welcome message panel. -->
       </div>
     </div><!-- ./div -->
-
     <% else %>
     <!-- Beginning of messaging panel here: -->
     <div class="col-md-7 col-md-offset-3 msg">
       <div class="row">
         <!-- Beginning of message history panel: -->
         <div class="col-md-12" id="msg-history">
+          <!-- Referenced from: http://www.w3schools.com/jsref/event_onclick.asp -->
+          <button onclick="showprev()">Show Previous Messages</button>
           <!--<pre id="output"></pre>-->
           <p id="msgOutput">
 
@@ -154,7 +158,7 @@
     <% end %>
   </div>
 </div>
-
+<!--Added by Therese for chat groups: -->
 <div id="newgroup">
   <%= form_tag("dashboard", method: :get) do %>
       <div id="newchatname"><label>Chat Name:</label>
