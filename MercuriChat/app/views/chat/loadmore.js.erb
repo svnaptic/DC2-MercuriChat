@@ -1,17 +1,24 @@
 
+gon.watch(chatlog, gonfunc);
+
+gonfunc = (count) ->
+        console.log(count)  
+
+
+function test(){
   var i = 0;
   var alrtstr1 = "<div class=\"alert alert-msg\" role=\"alert\">";
   var alrtstr2 = "<div>";
   console.log("HI")
-  console.log(gon.watch('chatlog'));
+  console.log(chatlog);
   console.log("BYE")
-  while(i < (gon.watch(chatlog)).length) {
+  while (i < (gon.watch(chatlog)).length) {
     d = (gon.watch(chatlogdate))[i];
     var tmanddat = "<p class=\"tmdt\">" + d + "</p>";
     displayMessage(alrtstr1 + tmanddat + (gon.watch(chatlog))[i] + alrtstr2);
     i += 1;
   }
-
+}
 
 
   function displayMessage(s) {

@@ -1,5 +1,7 @@
 # This file is used by Rack-based servers to start the application.
 #Tell Faye to load the adapter for the Thin webserver.
+require 'faye/websocket'
+
 
 Faye::WebSocket.load_adapter('thin')
 
