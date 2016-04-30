@@ -1,11 +1,29 @@
 # MercuriChat (for Data Communications II)
 ## Project Goal
 
-The goal of this project is to create a simple web client that uses TCP/WebSockets to connect to a chat server using HTML5, HTML5 WebSockets, CSS, JavaScript, and Ruby on Rails.
+The goal of this project is to create a simple web client that uses TCP/WebSockets to connect to a chat server using HTML5, HTML5 WebSockets, CSS, JavaScript, and Ruby on Rails. The goals we met were:
+* Creating a nice, easy-to-use user interface for the client-side (via Bootstrap);
+* Allow users to register for an account;
+* Send welcome emails to users;
+* Allow users to change their passwords through their profile page;
+* Design a welcome message to new users (those without an initialized friends list);
+* Allow users to sign in and sign out of an account easily;
+* Allow users to search for friends;
+* Allow users to add friends to a friends list;
+* Permit users to choose a friend from the friend list to chat; 
+* Allow users to conduct 1-on-1 or group communication; and
+* Provide users notification of unread messages.
+
+Some goals that we wanted to meet, but didn't in the allotted time were:
+* File-sharing of different types;
+* VoIP; and
+* Personalization of user icons.
+
+Overall, we met most of our goals for this project.
 
 ## Project Design
 
-We used draw.io to draw the diagrams explaining our project design.
+We used draw.io to draw the diagrams explaining our project design. We primarily utilised the Ruby on Rails framework, which has an MVC (model-view-controller) architecture. Under our __Project Design__ section, we have discussed the _controller_ portion in further detail.
 
 ### High-Level Diagram of MercuriChat:
 ![alt text](https://github.com/uml-dc2-2016-spring/DC2-MercuriChat/blob/master/mc-diagrams/MercuriChat-diagram.png)
@@ -21,6 +39,44 @@ The above indicates the initial functionalities a user has when he or she first 
 ![alt text](https://github.com/uml-dc2-2016-spring/DC2-MercuriChat/blob/master/mc-diagrams/MercuriChat-DashboardMVCDiagram.png)
 
 The diagram above shows the design flow once the user has gained access to their dashboards.
+
+### The Important Roles of Our Controllers
+We had 3 main controllers that were significant to our project; we had a 4th "controller", but this was actually our middleware.
+
+__application_controller.rb__:
+* Allows the Rails app to _only_ run applicable code before loading other webpages within this application.
+* Prevents CSRF (cross-site request forgery) attacks by raising exceptions.
+
+__users_controller.rb__:
+* Creates accounts by saving user data in a SQL database.
+  * We used SQLite3 for develpment, and MySQL for production.
+  * We used the Bcrypt gem so that the passwords are stored as encrypted hashes in the database.
+* Allows users to log into an account.
+* Adds other users to a "friends list".
+
+__chat_controller.rb__:
+* Handles funcitons regarding the current chat window (the dashboard). It:
+  * Initializes session variables (via cookie data).
+  * Determines:
+    * whether the session active is a private or group conversation;
+    * the name of the channel;
+    * the users involved in that channel;
+    * and the sender form.
+  * Passes a list of all users to __dashboard.js__ for auto-completion in the "Friends" search box.
+  * Redirects names of searched-for users to their profile page.
+  * Creates new chat groups.
+  * Displays old messages when a user views a channel. 
+  * Allows for viewing of old messages through the "Previous Messages" button.
+
+__dashboard_controller.rb__:
+* This "controller" is our application's middleware.
+* It creates a hash of WebSockets, where the key is the user's full name and the value is that WebSocket.
+  * EventMachine, which runs under Rails, spawns a new thread for each WebSocket.
+* Upon messaging, this middleware decrypts and parses session variables in the cookie data to determine the conversation channel's name, the users involved, and the sender.
+* It prepends the sender's name and the channel's name, and sends the message through the WebSockets to each person involved in the conversation.
+* It creates a database entry in the "chat" table for the message, and creates joint tables between senders/receivers and new messages.
+  * Client-side Javascript in websockets.js parses the message for the channel name.
+  * If messages are delivered to the wrong channel, then the messages will not be displayed until the user opens the correct channel and database entries are loaded.
 
 ## File Structure (from FILES.md)
 <ul>
