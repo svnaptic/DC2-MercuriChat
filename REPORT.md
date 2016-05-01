@@ -170,6 +170,9 @@ __dashboard_controller.rb__:
       <ul>
         <li>20160321200213_create_users.rb</li>
         <li>20160412080749_create_chats.rb</li>
+        <li>20160423101730_create_group_chats.rb</li>
+        <li>20160425045044_create_chatlog_entries.rb</li>
+        <li>20160418201559_create_friendships.rb</li>
       </ul>
     </ul>
     <li><b>rack_middleware/</b></li>
@@ -303,6 +306,9 @@ This file also creates a new table, "chats", and it also contains the time creat
 ## db/migrate
 * *20160321200213_create_users.rb* defines **change()**, which creates the "users" table described in *schema.rb*.
 * *20160412080749_create_chats.rb* defines **change()**, which creates the "chats" table described in *schema.rb*.
+* *20160423101730_create_group_chats.rb* defines **change()**, which creates the "group chats" table described in *schema.rb*. 
+* *20160425045044_create_chatlog_entries.rb* defines **change()**, which creates the "chatlog entries" table described in *schema.rb*.
+* *20160418201559_create_friendships.rb* defines **change()**, which creates the "friendships" table described in *schema.rb*.
 
 *****
 
